@@ -47,7 +47,7 @@
             this.panelsuperior.GradientBottomRight = System.Drawing.Color.DeepPink;
             this.panelsuperior.GradientTopLeft = System.Drawing.Color.DodgerBlue;
             this.panelsuperior.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(60)))), ((int)(((byte)(212)))));
-            this.panelsuperior.Location = new System.Drawing.Point(50, 10);
+            this.panelsuperior.Location = new System.Drawing.Point(50, 11);
             this.panelsuperior.Name = "panelsuperior";
             this.panelsuperior.Quality = 10;
             this.panelsuperior.Size = new System.Drawing.Size(1100, 50);
