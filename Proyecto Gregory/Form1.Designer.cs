@@ -33,9 +33,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelmenu = new Bunifu.UI.WinForms.BunifuGradientPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnmenu = new System.Windows.Forms.Button();
             this.panel3 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelmenu.SuspendLayout();
@@ -55,7 +55,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(20, 9);
+            this.label1.Location = new System.Drawing.Point(20, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
             this.label1.TabIndex = 4;
@@ -63,6 +63,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.panelmenu);
             this.panel2.Location = new System.Drawing.Point(0, 39);
             this.panel2.Name = "panel2";
@@ -90,9 +91,22 @@
             this.panelmenu.Size = new System.Drawing.Size(160, 450);
             this.panelmenu.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(0, 99);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(160, 45);
+            this.button1.TabIndex = 2;
+            this.button1.Tag = "Clientes";
+            this.button1.Text = "Clientes";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // btnmenu
             // 
-            this.btnmenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(43)))), ((int)(((byte)(54)))));
             this.btnmenu.FlatAppearance.BorderSize = 0;
             this.btnmenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnmenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -103,7 +117,7 @@
             this.btnmenu.Size = new System.Drawing.Size(48, 54);
             this.btnmenu.TabIndex = 0;
             this.btnmenu.Tag = "";
-            this.btnmenu.UseVisualStyleBackColor = true;
+            this.btnmenu.UseVisualStyleBackColor = false;
             this.btnmenu.Click += new System.EventHandler(this.btnmenu_Click);
             // 
             // panel3
@@ -120,19 +134,6 @@
             this.panel3.ShowBorders = true;
             this.panel3.Size = new System.Drawing.Size(160, 79);
             this.panel3.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 99);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 35);
-            this.button1.TabIndex = 2;
-            this.button1.Tag = "Clientes";
-            this.button1.Text = "Clientes";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

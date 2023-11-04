@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Proyecto_Gregory
 {
@@ -19,7 +20,8 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
 
-        int valorsuperior = 200;
+        int time = 200;
+        int time2 = 100;
 
         void borderadius()
         {
@@ -35,11 +37,16 @@ namespace Proyecto_Gregory
             this.Region = new Region(objDraw);
         }
 
-        private void CollapseMenu()
+        async Task EsperarAsync()
+        {
+            await Task.Delay(time2);
+        }
+
+        private async void CollapseMenu()
         {
             if (this.panelmenu.Width > 150)
             {
-                Transition.run(panelmenu, "Width", 80, new TransitionType_Linear(valorsuperior));
+                Transition.run(panelmenu, "Width", 80, new TransitionType_Linear(time));
                 panel3.Visible = false;
                 btnmenu.Dock = DockStyle.Top;
                 foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
@@ -48,12 +55,18 @@ namespace Proyecto_Gregory
                     menuButton.ImageAlign = ContentAlignment.MiddleCenter;
                     menuButton.Padding = new Padding(0);
                 }
+
+                await EsperarAsync();
+
+                panel2.Width = 150;
+                panelmenu.Location = new Point(50, panel3.Location.Y);
+
             }
 
             else
             {
-                Transition.run(panelmenu, "Width", 160, new TransitionType_Linear(valorsuperior));
                 panel3.Visible = true;
+                Transition.run(panelmenu, "Width", 160, new TransitionType_Linear(time));
                 btnmenu.Dock = DockStyle.None;
                 foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
                 {
@@ -61,10 +74,14 @@ namespace Proyecto_Gregory
                     menuButton.ImageAlign = ContentAlignment.MiddleLeft;
                     menuButton.Padding = new Padding(0, 0, 0, 0);
                 }
+
+                await EsperarAsync();
+
+                panel2.Width = 255;
+                panelmenu.Location = new Point(50, panel3.Location.Y);
+
             }
         }
-
-        //Transition.run(panelsuperior, "Height", 50, new TransitionType_Linear(valorsuperior));
 
         private void Form1_Load(object sender, EventArgs e)
         {
