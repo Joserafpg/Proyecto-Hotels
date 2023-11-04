@@ -35,19 +35,43 @@ namespace Proyecto_Gregory
             this.Region = new Region(objDraw);
         }
 
+        private void CollapseMenu()
+        {
+            if (this.panelmenu.Width > 150)
+            {
+                panelmenu.Width = 80;
+                btnmenu.Dock = DockStyle.Top;
+                foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
+                {
+                    menuButton.Text = "";
+                    menuButton.ImageAlign = ContentAlignment.MiddleCenter;
+                    menuButton.Padding = new Padding(0);
+                }
+            }
+
+            else
+            {
+                panelmenu.Width = 160;
+                btnmenu.Dock = DockStyle.None;
+                foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
+                {
+                    menuButton.Text = "   " + menuButton.Tag.ToString();
+                    menuButton.ImageAlign = ContentAlignment.MiddleLeft;
+                    menuButton.Padding = new Padding(0, 0, 0, 0);
+                }
+            }
+        }
+
+        //Transition.run(panelsuperior, "Height", 50, new TransitionType_Linear(valorsuperior));
+
         private void Form1_Load(object sender, EventArgs e)
         {
             borderadius();
         }
 
-        private void bunifuGradientPanel1_MouseEnter(object sender, EventArgs e)
+        private void btnmenu_Click(object sender, EventArgs e)
         {
-            Transition.run(panelsuperior, "Height", 80, new TransitionType_Linear(valorsuperior));
-        }
-
-        private void panelsuperior_MouseLeave(object sender, EventArgs e)
-        {
-            Transition.run(panelsuperior, "Height", 50, new TransitionType_Linear(valorsuperior));
+            CollapseMenu();
         }
     }
 }
