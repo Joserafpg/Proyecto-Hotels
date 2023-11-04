@@ -112,7 +112,7 @@
             this.btnmenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnmenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnmenu.Image = ((System.Drawing.Image)(resources.GetObject("btnmenu.Image")));
-            this.btnmenu.Location = new System.Drawing.Point(108, 10);
+            this.btnmenu.Location = new System.Drawing.Point(109, 10);
             this.btnmenu.Name = "btnmenu";
             this.btnmenu.Size = new System.Drawing.Size(48, 54);
             this.btnmenu.TabIndex = 0;
