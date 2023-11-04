@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -81,7 +82,30 @@ namespace Proyecto_Gregory
                 panelmenu.Location = new Point(50, panelmenu.Location.Y);
             }
         }
-    
+
+        public void AbrirFormEnPanel(object Formhijo)
+        {
+            if (this.paneldesktop.Controls.Count > 0)
+                this.paneldesktop.Controls.RemoveAt(0);
+            Form fh = Formhijo as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            this.paneldesktop.Controls.Add(fh);
+            this.paneldesktop.Tag = fh;
+            fh.Show();
+        }
+
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -91,6 +115,11 @@ namespace Proyecto_Gregory
         private void btnmenu_Click(object sender, EventArgs e)
         {
             CollapseMenu();
+        }
+
+        private void btninicio_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Inicio());
         }
     }
 }
