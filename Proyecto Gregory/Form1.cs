@@ -1,4 +1,6 @@
-﻿using Bunifu.UI.WinForms.Helpers.Transitions;
+﻿using Bunifu.UI.WinForms.BunifuButton;
+using Bunifu.UI.WinForms.Helpers.Transitions;
+using Bunifu.UI.WinForms.Renderers.Snackbar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,41 +49,39 @@ namespace Proyecto_Gregory
             if (this.panelmenu.Width > 150)
             {
                 Transition.run(panelmenu, "Width", 80, new TransitionType_Linear(time));
-                panel3.Visible = false;
                 btnmenu.Dock = DockStyle.Top;
-                foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
+                panel3.Visible = false;
+                foreach (BunifuButton2 menuButton in panelmenu.Controls.OfType<BunifuButton2>())
                 {
                     menuButton.Text = "";
-                    menuButton.ImageAlign = ContentAlignment.MiddleCenter;
-                    menuButton.Padding = new Padding(0);
+                    menuButton.IconLeftAlign = ContentAlignment.MiddleCenter;
                 }
 
                 await EsperarAsync();
 
                 panel2.Width = 150;
-                panelmenu.Location = new Point(50, panel3.Location.Y);
+                panelmenu.Location = new Point(50, panelmenu.Location.Y);
 
             }
 
             else
             {
+                Transition.run(panelmenu, "Width", 190, new TransitionType_Linear(time));
                 panel3.Visible = true;
-                Transition.run(panelmenu, "Width", 160, new TransitionType_Linear(time));
                 btnmenu.Dock = DockStyle.None;
-                foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
+                foreach (BunifuButton2 menuButton in panelmenu.Controls.OfType<BunifuButton2>())
                 {
                     menuButton.Text = "   " + menuButton.Tag.ToString();
-                    menuButton.ImageAlign = ContentAlignment.MiddleLeft;
-                    menuButton.Padding = new Padding(0, 0, 0, 0);
+                    menuButton.IconLeftAlign = ContentAlignment.MiddleLeft;
                 }
 
                 await EsperarAsync();
 
                 panel2.Width = 255;
-                panelmenu.Location = new Point(50, panel3.Location.Y);
-
+                panelmenu.Location = new Point(50, panelmenu.Location.Y);
             }
         }
+    
 
         private void Form1_Load(object sender, EventArgs e)
         {
