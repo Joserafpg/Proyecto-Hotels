@@ -39,7 +39,8 @@ namespace Proyecto_Gregory
         {
             if (this.panelmenu.Width > 150)
             {
-                panelmenu.Width = 80;
+                Transition.run(panelmenu, "Width", 80, new TransitionType_Linear(valorsuperior));
+                panel3.Visible = false;
                 btnmenu.Dock = DockStyle.Top;
                 foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
                 {
@@ -51,7 +52,8 @@ namespace Proyecto_Gregory
 
             else
             {
-                panelmenu.Width = 160;
+                Transition.run(panelmenu, "Width", 160, new TransitionType_Linear(valorsuperior));
+                panel3.Visible = true;
                 btnmenu.Dock = DockStyle.None;
                 foreach (Button menuButton in panelmenu.Controls.OfType<Button>())
                 {
