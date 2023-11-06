@@ -35,7 +35,7 @@ namespace Proyecto_Gregory
         }
 
         int time = 200;
-        int time2 = 100;
+        int time2 = 50;
         private Timer timer;
         private Timer timer2;
         private const int delayMilliseconds = 1000;
@@ -67,12 +67,7 @@ namespace Proyecto_Gregory
             this.Region = new Region(objDraw);
         }
 
-        async Task EsperarAsync()
-        {
-            await Task.Delay(time2);
-        }
-
-        private async void CollapseMenu()
+        private void CollapseMenu()
         {
             if (this.panelmenu.Width > 150)
             {
@@ -85,10 +80,7 @@ namespace Proyecto_Gregory
                     menuButton.IconLeftAlign = ContentAlignment.MiddleCenter;
                 }
 
-                await EsperarAsync();
-
-                panel2.Width = 150;
-                panelmenu.Location = new Point(50, panelmenu.Location.Y);
+                Transition.run(panel2, "Width", 150, new TransitionType_Linear(time));
 
             }
 
@@ -103,10 +95,8 @@ namespace Proyecto_Gregory
                     menuButton.IconLeftAlign = ContentAlignment.MiddleLeft;
                 }
 
-                await EsperarAsync();
+                Transition.run(panel2, "Width", 255, new TransitionType_Linear(time));
 
-                panel2.Width = 255;
-                panelmenu.Location = new Point(50, panelmenu.Location.Y);
             }
         }
 
