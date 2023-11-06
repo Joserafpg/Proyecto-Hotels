@@ -1,4 +1,5 @@
-﻿using Bunifu.UI.WinForms.BunifuButton;
+﻿using Bunifu.UI.WinForms;
+using Bunifu.UI.WinForms.BunifuButton;
 using Bunifu.UI.WinForms.Helpers.Transitions;
 using Bunifu.UI.WinForms.Renderers.Snackbar;
 using System;
@@ -21,10 +22,36 @@ namespace Proyecto_Gregory
         public Form1()
         {
             InitializeComponent();
+
+            timer = new Timer();
+            timer.Interval = delayMilliseconds;
+            timer.Tick += Timer_Tick;
+
+            timer2 = new Timer();
+            timer2.Interval = 1000;
+            timer2.Tick += Timer_Tick2;
+
+            timer2.Start();
         }
 
         int time = 200;
         int time2 = 100;
+        private Timer timer;
+        private Timer timer2;
+        private const int delayMilliseconds = 1000;
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            paneluser.Visible = false;
+            timer.Stop();
+        }
+        
+        private void Timer_Tick2(object sender, EventArgs e)
+        {
+            labelhora.Text = DateTime.Now.ToString("HH:mm");
+            DateTime fechaActual = DateTime.Now;
+            fecha.Text = fechaActual.ToString("dd/MM/yyyy HH:mm:ss");
+        }
 
         void borderadius()
         {
@@ -120,6 +147,29 @@ namespace Proyecto_Gregory
         private void btninicio_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new Inicio());
+        }
+
+        private void labelhora_MouseEnter(object sender, EventArgs e)
+        {
+            panelfecha.Visible = true;
+        }
+
+        private void labelhora_MouseLeave(object sender, EventArgs e)
+        {
+            panelfecha.Visible = false;
+        }
+
+        private bool panelVisible = false;
+
+        private void labeluser_Click(object sender, EventArgs e)
+        {
+            panelVisible = !panelVisible;
+            paneluser.Visible = panelVisible;
+        }
+
+        private void paneluser_MouseLeave(object sender, EventArgs e)
+        {
+            timer.Start();
         }
     }
 }
