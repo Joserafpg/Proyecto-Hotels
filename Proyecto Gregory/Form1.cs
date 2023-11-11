@@ -112,6 +112,12 @@ namespace Proyecto_Gregory
             fh.Show();
         }
 
+        public void text(string tittle, string description)
+        {
+            tittlepage.Text = tittle;
+            descriptionpage.Text = description;
+        }
+
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -137,6 +143,7 @@ namespace Proyecto_Gregory
         private void btninicio_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new Inicio());
+            text("Inicio", "???.");
         }
 
         private void labelhora_MouseEnter(object sender, EventArgs e)
@@ -160,6 +167,11 @@ namespace Proyecto_Gregory
         private void paneluser_MouseLeave(object sender, EventArgs e)
         {
             timer.Start();
+        }
+
+        private void paneluser_MouseEnter(object sender, EventArgs e)
+        {
+            timer.Stop();
         }
     }
 }
