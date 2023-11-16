@@ -26,7 +26,7 @@ namespace Proyecto_Gregory.Clases.Habitaciones
             }
             if (!string.IsNullOrEmpty(pCapacidad))
             {
-                query += $" AND Capacidad LIKE '%{pCapacidad}%'";
+                query += $" AND Capacida_maxima LIKE '%{pCapacidad}%'";
             }
             if (!string.IsNullOrEmpty(pEstado))
             {
