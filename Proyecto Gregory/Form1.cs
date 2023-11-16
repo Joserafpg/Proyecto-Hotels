@@ -2,10 +2,12 @@
 using Bunifu.UI.WinForms.BunifuButton;
 using Bunifu.UI.WinForms.Helpers.Transitions;
 using Bunifu.UI.WinForms.Renderers.Snackbar;
+using Proyecto_Gregory.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -132,6 +134,35 @@ namespace Proyecto_Gregory
         private void Form1_Load(object sender, EventArgs e)
         {
             borderadius();
+
+            btninicio.PerformClick();
+
+            string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+
+                string consultaSQL = "SELECT TOP 1 * FROM Acceso ORDER BY Fecha DESC";
+
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            labeluser.Text = reader["Usuario"].ToString();
+                            lbuser.Text = reader["Usuario"].ToString();
+                        }
+                    }
+                }
+            }
+
+            lbpermiso.Text =    Permisos.Recepcionista ? "Recepcionista" :
+                                Permisos.Tecnico ? "Tecnico" :
+                                Permisos.Administrador ? "Admin" : 
+                                Permisos.Gerencia ? "Gerencia" :
+                                Permisos.Contable ? "Contable" : "";
         }
 
         private void btnmenu_Click(object sender, EventArgs e)
