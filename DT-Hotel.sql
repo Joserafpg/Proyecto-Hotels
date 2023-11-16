@@ -44,4 +44,6 @@ Estado varchar (20)
 )
 
 
+select * from Acceso
+
 DROP TABLE Habitaciones

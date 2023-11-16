@@ -220,6 +220,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Clases\DatosbaseRegistro.cs" />
+    <Compile Include="Clases\Datosgetregistro.cs" />
+    <Compile Include="Clases\Permisos.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
