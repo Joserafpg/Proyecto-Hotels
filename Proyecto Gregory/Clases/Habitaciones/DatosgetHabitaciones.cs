@@ -12,7 +12,7 @@ namespace Proyecto_Gregory.Clases.Habitaciones
         public string Numero_habitacion { get; set; }
         public string Tipo_habitacion { get; set; }
         public decimal Tarifa_noche { get; set; }
-        public Int64 Capacida_maxima { get; set; }
+        public Int64 Capacidad { get; set; }
         public Int64 Camas { get; set; }
         public bool Servicio_habitacion { get; set; }
         public string Estado { get; set; }
@@ -25,7 +25,7 @@ namespace Proyecto_Gregory.Clases.Habitaciones
             this.Numero_habitacion = pNumero;
             this.Tipo_habitacion = pTipo;
             this.Tarifa_noche = pTarifa;
-            this.Capacida_maxima = pCapacidad;
+            this.Capacidad = pCapacidad;
             this.Camas = pCamas;
             this.Servicio_habitacion = pServicio;
             this.Estado = pEstado;

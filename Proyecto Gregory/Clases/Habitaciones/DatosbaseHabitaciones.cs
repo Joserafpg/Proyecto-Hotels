@@ -26,7 +26,7 @@ namespace Proyecto_Gregory.Clases.Habitaciones
             }
             if (!string.IsNullOrEmpty(pCapacidad))
             {
-                query += $" AND Capacida_maxima LIKE '%{pCapacidad}%'";
+                query += $" AND Capacidad LIKE '%{pCapacidad}%'";
             }
             if (!string.IsNullOrEmpty(pEstado))
             {
@@ -43,7 +43,7 @@ namespace Proyecto_Gregory.Clases.Habitaciones
                 pAlumnos.Numero_habitacion = reader.GetString(1);
                 pAlumnos.Tipo_habitacion = reader.GetString(2);
                 pAlumnos.Tarifa_noche = reader.GetDecimal(3);
-                pAlumnos.Capacida_maxima = Convert.ToInt64(reader.GetValue(4));
+                pAlumnos.Capacidad = Convert.ToInt64(reader.GetValue(4));
                 pAlumnos.Camas = Convert.ToInt64(reader.GetValue(5));
                 pAlumnos.Servicio_habitacion = reader.GetBoolean(6);
                 pAlumnos.Estado = reader.GetString(7);
