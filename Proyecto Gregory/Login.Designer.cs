@@ -187,6 +187,7 @@
             this.txtpass.DefaultFont = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtpass.DefaultText = "";
             this.txtpass.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(92)))));
+            this.txtpass.ForeColor = System.Drawing.Color.White;
             this.txtpass.HideSelection = true;
             this.txtpass.IconLeft = null;
             this.txtpass.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
@@ -202,7 +203,7 @@
             this.txtpass.Name = "txtpass";
             stateProperties1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(135)))), ((int)(((byte)(173)))));
             stateProperties1.FillColor = System.Drawing.Color.Empty;
-            stateProperties1.ForeColor = System.Drawing.Color.Empty;
+            stateProperties1.ForeColor = System.Drawing.Color.White;
             stateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.txtpass.OnActiveState = stateProperties1;
             stateProperties2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -212,12 +213,12 @@
             this.txtpass.OnDisabledState = stateProperties2;
             stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(135)))), ((int)(((byte)(173)))));
             stateProperties3.FillColor = System.Drawing.Color.Empty;
-            stateProperties3.ForeColor = System.Drawing.Color.Empty;
+            stateProperties3.ForeColor = System.Drawing.Color.White;
             stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.txtpass.OnHoverState = stateProperties3;
             stateProperties4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(92)))));
             stateProperties4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(92)))));
-            stateProperties4.ForeColor = System.Drawing.Color.Empty;
+            stateProperties4.ForeColor = System.Drawing.Color.White;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.txtpass.OnIdleState = stateProperties4;
             this.txtpass.Padding = new System.Windows.Forms.Padding(3);
@@ -264,6 +265,7 @@
             this.txtuser.DefaultFont = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtuser.DefaultText = "";
             this.txtuser.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(92)))));
+            this.txtuser.ForeColor = System.Drawing.Color.White;
             this.txtuser.HideSelection = true;
             this.txtuser.IconLeft = null;
             this.txtuser.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
@@ -279,7 +281,7 @@
             this.txtuser.Name = "txtuser";
             stateProperties5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(135)))), ((int)(((byte)(173)))));
             stateProperties5.FillColor = System.Drawing.Color.Empty;
-            stateProperties5.ForeColor = System.Drawing.Color.Empty;
+            stateProperties5.ForeColor = System.Drawing.Color.White;
             stateProperties5.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.txtuser.OnActiveState = stateProperties5;
             stateProperties6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -289,12 +291,12 @@
             this.txtuser.OnDisabledState = stateProperties6;
             stateProperties7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(135)))), ((int)(((byte)(173)))));
             stateProperties7.FillColor = System.Drawing.Color.Empty;
-            stateProperties7.ForeColor = System.Drawing.Color.Empty;
+            stateProperties7.ForeColor = System.Drawing.Color.White;
             stateProperties7.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.txtuser.OnHoverState = stateProperties7;
             stateProperties8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(92)))));
             stateProperties8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(92)))));
-            stateProperties8.ForeColor = System.Drawing.Color.Empty;
+            stateProperties8.ForeColor = System.Drawing.Color.White;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.txtuser.OnIdleState = stateProperties8;
             this.txtuser.Padding = new System.Windows.Forms.Padding(3);
@@ -431,6 +433,7 @@
             this.btnpassview.Size = new System.Drawing.Size(35, 35);
             this.btnpassview.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
             this.btnpassview.TabIndex = 3;
+            this.btnpassview.Visible = false;
             this.btnpassview.Click += new System.EventHandler(this.btnpassview_Click);
             this.btnpassview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpassview_MouseDown);
             this.btnpassview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnpassview_MouseUp);

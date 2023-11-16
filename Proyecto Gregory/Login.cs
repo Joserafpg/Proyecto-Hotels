@@ -23,8 +23,6 @@ namespace Proyecto_Gregory
 
             bool containsLetterOrDigit = false;
 
-            txtpass.ForeColor = Color.White;
-
             foreach (char c in inputText)
             {
                 if (char.IsLetter(c) || char.IsDigit(c))
@@ -50,19 +48,16 @@ namespace Proyecto_Gregory
         private void btnpassview_Click(object sender, EventArgs e)
         {
             txtpass.PasswordChar = '\0';
-            txtpass.ForeColor = Color.White;
         }
 
         private void btnpassview_MouseUp(object sender, MouseEventArgs e)
         {
             txtpass.PasswordChar = '●';
-            txtpass.ForeColor = Color.White;
         }
 
         private void btnpassview_MouseDown(object sender, MouseEventArgs e)
         {
             txtpass.PasswordChar = '\0';
-            txtpass.ForeColor = Color.White;
         }
     }
 }
