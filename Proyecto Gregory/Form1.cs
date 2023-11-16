@@ -173,5 +173,11 @@ namespace Proyecto_Gregory
         {
             timer.Stop();
         }
+
+        private void btnhabitaciones_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Habitaciones());
+            text("Habitaciones", "???.");
+        }
     }
 }

@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges28 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges29 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges30 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges31 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges32 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges33 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges34 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges35 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges36 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges19 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges20 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges22 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges23 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges24 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges25 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges26 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges27 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelhora = new System.Windows.Forms.Label();
             this.bunifuPictureBox2 = new Bunifu.UI.WinForms.BunifuPictureBox();
@@ -48,6 +48,7 @@
             this.paneluser = new Bunifu.UI.WinForms.BunifuGradientPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.panelfecha = new Bunifu.UI.WinForms.BunifuGradientPanel();
@@ -66,9 +67,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.paneldesktop = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tittlepage = new System.Windows.Forms.Label();
             this.descriptionpage = new System.Windows.Forms.Label();
+            this.tittlepage = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox1)).BeginInit();
@@ -268,6 +268,16 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "admin";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(45, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 16);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Permiso:";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -297,11 +307,11 @@
             this.bunifuButton21.ColorContrastOnClick = 45;
             this.bunifuButton21.ColorContrastOnHover = 45;
             this.bunifuButton21.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges28.BottomLeft = true;
-            borderEdges28.BottomRight = true;
-            borderEdges28.TopLeft = true;
-            borderEdges28.TopRight = true;
-            this.bunifuButton21.CustomizableEdges = borderEdges28;
+            borderEdges19.BottomLeft = true;
+            borderEdges19.BottomRight = true;
+            borderEdges19.TopLeft = true;
+            borderEdges19.TopRight = true;
+            this.bunifuButton21.CustomizableEdges = borderEdges19;
             this.bunifuButton21.DialogResult = System.Windows.Forms.DialogResult.None;
             this.bunifuButton21.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton21.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -457,11 +467,11 @@
             this.btncerrar.ColorContrastOnClick = 45;
             this.btncerrar.ColorContrastOnHover = 45;
             this.btncerrar.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges29.BottomLeft = true;
-            borderEdges29.BottomRight = true;
-            borderEdges29.TopLeft = true;
-            borderEdges29.TopRight = true;
-            this.btncerrar.CustomizableEdges = borderEdges29;
+            borderEdges20.BottomLeft = true;
+            borderEdges20.BottomRight = true;
+            borderEdges20.TopLeft = true;
+            borderEdges20.TopRight = true;
+            this.btncerrar.CustomizableEdges = borderEdges20;
             this.btncerrar.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btncerrar.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btncerrar.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -548,11 +558,11 @@
             this.btnsettings.ColorContrastOnClick = 45;
             this.btnsettings.ColorContrastOnHover = 45;
             this.btnsettings.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges30.BottomLeft = true;
-            borderEdges30.BottomRight = true;
-            borderEdges30.TopLeft = true;
-            borderEdges30.TopRight = true;
-            this.btnsettings.CustomizableEdges = borderEdges30;
+            borderEdges21.BottomLeft = true;
+            borderEdges21.BottomRight = true;
+            borderEdges21.TopLeft = true;
+            borderEdges21.TopRight = true;
+            this.btnsettings.CustomizableEdges = borderEdges21;
             this.btnsettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnsettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnsettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -639,11 +649,11 @@
             this.btnfacturacion.ColorContrastOnClick = 45;
             this.btnfacturacion.ColorContrastOnHover = 45;
             this.btnfacturacion.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges31.BottomLeft = true;
-            borderEdges31.BottomRight = true;
-            borderEdges31.TopLeft = true;
-            borderEdges31.TopRight = true;
-            this.btnfacturacion.CustomizableEdges = borderEdges31;
+            borderEdges22.BottomLeft = true;
+            borderEdges22.BottomRight = true;
+            borderEdges22.TopLeft = true;
+            borderEdges22.TopRight = true;
+            this.btnfacturacion.CustomizableEdges = borderEdges22;
             this.btnfacturacion.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnfacturacion.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnfacturacion.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -730,11 +740,11 @@
             this.btnreservaciones.ColorContrastOnClick = 45;
             this.btnreservaciones.ColorContrastOnHover = 45;
             this.btnreservaciones.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges32.BottomLeft = true;
-            borderEdges32.BottomRight = true;
-            borderEdges32.TopLeft = true;
-            borderEdges32.TopRight = true;
-            this.btnreservaciones.CustomizableEdges = borderEdges32;
+            borderEdges23.BottomLeft = true;
+            borderEdges23.BottomRight = true;
+            borderEdges23.TopLeft = true;
+            borderEdges23.TopRight = true;
+            this.btnreservaciones.CustomizableEdges = borderEdges23;
             this.btnreservaciones.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnreservaciones.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnreservaciones.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -821,11 +831,11 @@
             this.btnhabitaciones.ColorContrastOnClick = 45;
             this.btnhabitaciones.ColorContrastOnHover = 45;
             this.btnhabitaciones.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges33.BottomLeft = true;
-            borderEdges33.BottomRight = true;
-            borderEdges33.TopLeft = true;
-            borderEdges33.TopRight = true;
-            this.btnhabitaciones.CustomizableEdges = borderEdges33;
+            borderEdges24.BottomLeft = true;
+            borderEdges24.BottomRight = true;
+            borderEdges24.TopLeft = true;
+            borderEdges24.TopRight = true;
+            this.btnhabitaciones.CustomizableEdges = borderEdges24;
             this.btnhabitaciones.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnhabitaciones.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnhabitaciones.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -892,6 +902,7 @@
             this.btnhabitaciones.TextMarginLeft = 0;
             this.btnhabitaciones.TextPadding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnhabitaciones.UseDefaultRadiusAndThickness = true;
+            this.btnhabitaciones.Click += new System.EventHandler(this.btnhabitaciones_Click);
             // 
             // btnclientes
             // 
@@ -912,11 +923,11 @@
             this.btnclientes.ColorContrastOnClick = 45;
             this.btnclientes.ColorContrastOnHover = 45;
             this.btnclientes.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges34.BottomLeft = true;
-            borderEdges34.BottomRight = true;
-            borderEdges34.TopLeft = true;
-            borderEdges34.TopRight = true;
-            this.btnclientes.CustomizableEdges = borderEdges34;
+            borderEdges25.BottomLeft = true;
+            borderEdges25.BottomRight = true;
+            borderEdges25.TopLeft = true;
+            borderEdges25.TopRight = true;
+            this.btnclientes.CustomizableEdges = borderEdges25;
             this.btnclientes.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnclientes.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnclientes.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -1003,11 +1014,11 @@
             this.btninicio.ColorContrastOnClick = 45;
             this.btninicio.ColorContrastOnHover = 45;
             this.btninicio.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges35.BottomLeft = true;
-            borderEdges35.BottomRight = true;
-            borderEdges35.TopLeft = true;
-            borderEdges35.TopRight = true;
-            this.btninicio.CustomizableEdges = borderEdges35;
+            borderEdges26.BottomLeft = true;
+            borderEdges26.BottomRight = true;
+            borderEdges26.TopLeft = true;
+            borderEdges26.TopRight = true;
+            this.btninicio.CustomizableEdges = borderEdges26;
             this.btninicio.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btninicio.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btninicio.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -1095,11 +1106,11 @@
             this.btnmenu.ColorContrastOnClick = 45;
             this.btnmenu.ColorContrastOnHover = 45;
             this.btnmenu.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges36.BottomLeft = true;
-            borderEdges36.BottomRight = true;
-            borderEdges36.TopLeft = true;
-            borderEdges36.TopRight = true;
-            this.btnmenu.CustomizableEdges = borderEdges36;
+            borderEdges27.BottomLeft = true;
+            borderEdges27.BottomRight = true;
+            borderEdges27.TopLeft = true;
+            borderEdges27.TopRight = true;
+            this.btnmenu.CustomizableEdges = borderEdges27;
             this.btnmenu.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnmenu.DisabledBorderColor = System.Drawing.Color.Transparent;
             this.btnmenu.DisabledFillColor = System.Drawing.Color.Transparent;
@@ -1212,36 +1223,26 @@
             this.panel4.Size = new System.Drawing.Size(945, 62);
             this.panel4.TabIndex = 0;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(45, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 16);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Permiso:";
-            // 
-            // tittlepage
-            // 
-            this.tittlepage.AutoSize = true;
-            this.tittlepage.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tittlepage.Location = new System.Drawing.Point(30, 14);
-            this.tittlepage.Name = "tittlepage";
-            this.tittlepage.Size = new System.Drawing.Size(48, 25);
-            this.tittlepage.TabIndex = 5;
-            this.tittlepage.Text = "???";
-            // 
             // descriptionpage
             // 
             this.descriptionpage.AutoSize = true;
             this.descriptionpage.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionpage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
-            this.descriptionpage.Location = new System.Drawing.Point(32, 39);
+            this.descriptionpage.Location = new System.Drawing.Point(17, 39);
             this.descriptionpage.Name = "descriptionpage";
             this.descriptionpage.Size = new System.Drawing.Size(28, 16);
             this.descriptionpage.TabIndex = 5;
             this.descriptionpage.Text = "???";
+            // 
+            // tittlepage
+            // 
+            this.tittlepage.AutoSize = true;
+            this.tittlepage.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tittlepage.Location = new System.Drawing.Point(15, 14);
+            this.tittlepage.Name = "tittlepage";
+            this.tittlepage.Size = new System.Drawing.Size(48, 25);
+            this.tittlepage.TabIndex = 5;
+            this.tittlepage.Text = "???";
             // 
             // Form1
             // 

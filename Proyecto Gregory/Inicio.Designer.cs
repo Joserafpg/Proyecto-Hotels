@@ -43,10 +43,10 @@
             this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
             this.bunifuPanel1.BorderRadius = 3;
             this.bunifuPanel1.BorderThickness = 1;
-            this.bunifuPanel1.Location = new System.Drawing.Point(12, 22);
+            this.bunifuPanel1.Location = new System.Drawing.Point(88, 22);
             this.bunifuPanel1.Name = "bunifuPanel1";
             this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(35, 205);
+            this.bunifuPanel1.Size = new System.Drawing.Size(828, 205);
             this.bunifuPanel1.TabIndex = 0;
             // 
             // bunifuPanel2
