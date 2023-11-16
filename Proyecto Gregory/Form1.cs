@@ -35,7 +35,6 @@ namespace Proyecto_Gregory
         }
 
         int time = 200;
-        int time2 = 50;
         private Timer timer;
         private Timer timer2;
         private const int delayMilliseconds = 1000;
@@ -179,5 +178,18 @@ namespace Proyecto_Gregory
             AbrirFormEnPanel(new Habitaciones());
             text("Habitaciones", "???.");
         }
+
+        private void btnreservaciones_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Reservaciones());
+            text("Reservaciones", "???.");
+        }
+
+        private void btncerrar_Click(object sender, EventArgs e)
+        {
+            Login frm = new Login();
+            frm.Show();
+            this.Close();
+        }        
     }
 }
