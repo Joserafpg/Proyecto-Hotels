@@ -223,6 +223,8 @@
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\DatosbaseRegistro.cs" />
     <Compile Include="Clases\Datosgetregistro.cs" />
+    <Compile Include="Clases\Habitaciones\DatosbaseHabitaciones.cs" />
+    <Compile Include="Clases\Habitaciones\DatosgetHabitaciones.cs" />
     <Compile Include="Clases\Permisos.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -298,7 +300,6 @@
   <ItemGroup>
     <Folder Include="Clases\Clientes\" />
     <Folder Include="Clases\Facturacion\" />
-    <Folder Include="Clases\Habitaciones\" />
     <Folder Include="Clases\Usuarios\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
