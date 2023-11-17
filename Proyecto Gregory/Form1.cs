@@ -204,6 +204,12 @@ namespace Proyecto_Gregory
             timer.Stop();
         }
 
+        private void btnclientes_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Clientes());
+            text("Clientes", "???.");
+        }
+
         private void btnhabitaciones_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new Habitaciones());

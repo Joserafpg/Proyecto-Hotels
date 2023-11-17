@@ -226,6 +226,12 @@
     <Compile Include="Clases\Habitaciones\DatosbaseHabitaciones.cs" />
     <Compile Include="Clases\Habitaciones\DatosgetHabitaciones.cs" />
     <Compile Include="Clases\Permisos.cs" />
+    <Compile Include="Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes.Designer.cs">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +264,9 @@
     <Compile Include="Reservaciones.Designer.cs">
       <DependentUpon>Reservaciones.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Clientes.resx">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -997,6 +997,7 @@
             this.btnclientes.TextMarginLeft = 0;
             this.btnclientes.TextPadding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnclientes.UseDefaultRadiusAndThickness = true;
+            this.btnclientes.Click += new System.EventHandler(this.btnclientes_Click);
             // 
             // btninicio
             // 
