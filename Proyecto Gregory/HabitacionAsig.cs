@@ -22,13 +22,13 @@ namespace Proyecto_Gregory
 
         public void InitializeData(Int64 id, string numero_habitacion, string tipo_habitacion, decimal tarifa_noche, Int64 capacidad_maxima, Int64 camas, bool servicio, string estado)
         {
-            /*txtid.Text = id.ToString();
-            txtnombre.Text = nombre;
-            txtpreciocompra.Text = precioCompra.ToString();
-            txtprecio.Text = precio.ToString();
-            txtcantidad.Text = cantidad.ToString();
-            cdepartamento.Text = departamento;
-            dtp.Value = fecha;*/
+            lbnumh.Text = numero_habitacion;
+            lbtipoh.Text = tipo_habitacion;
+            lbprecio.Text = tarifa_noche.ToString();
+            lbcapacidad.Text = capacidad_maxima.ToString();
+            lbcamas.Text = camas.ToString();
+            chservicio.Value = servicio;
+            lbestado.Text = estado;
         }
 
         private void HabitacionAsig_Load(object sender, EventArgs e)
@@ -65,6 +65,12 @@ namespace Proyecto_Gregory
             {
                 lbdias.Text = diasDeDiferencia + " días";
             }
+
+            decimal precio = Convert.ToDecimal(lbprecio.Text);
+            decimal resultado = Math.Abs(precio * diasDeDiferencia);
+
+
+            lbtotal.Text = Convert.ToString(resultado);
         }
     }
 }

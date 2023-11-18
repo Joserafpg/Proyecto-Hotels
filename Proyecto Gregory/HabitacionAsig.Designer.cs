@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HabitacionAsig));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState1 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState2 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,12 +43,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lbnumh = new System.Windows.Forms.Label();
+            this.lbtipoh = new System.Windows.Forms.Label();
+            this.lbprecio = new System.Windows.Forms.Label();
+            this.lbcapacidad = new System.Windows.Forms.Label();
+            this.lbcamas = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.label16 = new System.Windows.Forms.Label();
@@ -55,8 +57,11 @@
             this.fechasalida = new Bunifu.UI.WinForms.BunifuDatePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.lbdias = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lbtotal = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.chservicio = new Bunifu.UI.WinForms.BunifuToggleSwitch();
+            this.lbestado = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -159,65 +164,55 @@
             this.label9.TabIndex = 9;
             this.label9.Text = "Codigo Cliente:";
             // 
-            // label10
+            // lbnumh
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(225, 68);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 15);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "000";
+            this.lbnumh.AutoSize = true;
+            this.lbnumh.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbnumh.Location = new System.Drawing.Point(225, 68);
+            this.lbnumh.Name = "lbnumh";
+            this.lbnumh.Size = new System.Drawing.Size(25, 15);
+            this.lbnumh.TabIndex = 10;
+            this.lbnumh.Text = "000";
             // 
-            // label11
+            // lbtipoh
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(225, 91);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 15);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "000";
+            this.lbtipoh.AutoSize = true;
+            this.lbtipoh.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtipoh.Location = new System.Drawing.Point(225, 91);
+            this.lbtipoh.Name = "lbtipoh";
+            this.lbtipoh.Size = new System.Drawing.Size(25, 15);
+            this.lbtipoh.TabIndex = 11;
+            this.lbtipoh.Text = "000";
             // 
-            // label12
+            // lbprecio
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(225, 114);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(25, 15);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "000";
+            this.lbprecio.AutoSize = true;
+            this.lbprecio.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbprecio.Location = new System.Drawing.Point(225, 114);
+            this.lbprecio.Name = "lbprecio";
+            this.lbprecio.Size = new System.Drawing.Size(25, 15);
+            this.lbprecio.TabIndex = 12;
+            this.lbprecio.Text = "000";
             // 
-            // label13
+            // lbcapacidad
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(225, 137);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(25, 15);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "000";
+            this.lbcapacidad.AutoSize = true;
+            this.lbcapacidad.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcapacidad.Location = new System.Drawing.Point(225, 137);
+            this.lbcapacidad.Name = "lbcapacidad";
+            this.lbcapacidad.Size = new System.Drawing.Size(25, 15);
+            this.lbcapacidad.TabIndex = 13;
+            this.lbcapacidad.Text = "000";
             // 
-            // label14
+            // lbcamas
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(225, 160);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(25, 15);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "000";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(225, 183);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(25, 15);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "000";
+            this.lbcamas.AutoSize = true;
+            this.lbcamas.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcamas.Location = new System.Drawing.Point(225, 160);
+            this.lbcamas.Name = "lbcamas";
+            this.lbcamas.Size = new System.Drawing.Size(25, 15);
+            this.lbcamas.TabIndex = 14;
+            this.lbcamas.Text = "000";
             // 
             // textBox1
             // 
@@ -246,11 +241,11 @@
             this.bunifuButton21.ColorContrastOnClick = 45;
             this.bunifuButton21.ColorContrastOnHover = 45;
             this.bunifuButton21.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.bunifuButton21.CustomizableEdges = borderEdges2;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.bunifuButton21.CustomizableEdges = borderEdges1;
             this.bunifuButton21.DialogResult = System.Windows.Forms.DialogResult.None;
             this.bunifuButton21.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton21.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -416,15 +411,15 @@
             this.lbdias.TabIndex = 25;
             this.lbdias.Text = "000";
             // 
-            // label21
+            // lbtotal
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(570, 350);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(25, 15);
-            this.label21.TabIndex = 27;
-            this.label21.Text = "000";
+            this.lbtotal.AutoSize = true;
+            this.lbtotal.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtotal.Location = new System.Drawing.Point(570, 350);
+            this.lbtotal.Name = "lbtotal";
+            this.lbtotal.Size = new System.Drawing.Size(25, 15);
+            this.lbtotal.TabIndex = 27;
+            this.lbtotal.Text = "000";
             // 
             // label22
             // 
@@ -436,12 +431,78 @@
             this.label22.TabIndex = 26;
             this.label22.Text = "Total a pagar:";
             // 
+            // chservicio
+            // 
+            this.chservicio.Animation = 5;
+            this.chservicio.AnimationSpeed = 5;
+            this.chservicio.BackColor = System.Drawing.Color.Transparent;
+            this.chservicio.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("chservicio.BackgroundImage")));
+            this.chservicio.Checked = true;
+            this.chservicio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chservicio.InnerCirclePadding = 3;
+            this.chservicio.Location = new System.Drawing.Point(228, 183);
+            this.chservicio.Name = "chservicio";
+            this.chservicio.Size = new System.Drawing.Size(30, 16);
+            this.chservicio.TabIndex = 15;
+            this.chservicio.ThumbMargin = 3;
+            toggleState1.BackColor = System.Drawing.Color.DarkGray;
+            toggleState1.BackColorInner = System.Drawing.Color.White;
+            toggleState1.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState1.BorderColorInner = System.Drawing.Color.White;
+            toggleState1.BorderRadius = 17;
+            toggleState1.BorderRadiusInner = 11;
+            toggleState1.BorderThickness = 1;
+            toggleState1.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateDisabled = toggleState1;
+            toggleState2.BackColor = System.Drawing.Color.Empty;
+            toggleState2.BackColorInner = System.Drawing.Color.Empty;
+            toggleState2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(0)))), ((int)(((byte)(140)))));
+            toggleState2.BorderColorInner = System.Drawing.Color.Empty;
+            toggleState2.BorderRadius = 1;
+            toggleState2.BorderRadiusInner = 1;
+            toggleState2.BorderThickness = 1;
+            toggleState2.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateOff = toggleState2;
+            toggleState3.BackColor = System.Drawing.Color.DodgerBlue;
+            toggleState3.BackColorInner = System.Drawing.Color.White;
+            toggleState3.BorderColor = System.Drawing.Color.DodgerBlue;
+            toggleState3.BorderColorInner = System.Drawing.Color.White;
+            toggleState3.BorderRadius = 15;
+            toggleState3.BorderRadiusInner = 9;
+            toggleState3.BorderThickness = 1;
+            toggleState3.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateOn = toggleState3;
+            this.chservicio.Value = true;
+            // 
+            // lbestado
+            // 
+            this.lbestado.AutoSize = true;
+            this.lbestado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbestado.Location = new System.Drawing.Point(225, 212);
+            this.lbestado.Name = "lbestado";
+            this.lbestado.Size = new System.Drawing.Size(25, 15);
+            this.lbestado.TabIndex = 30;
+            this.lbestado.Text = "000";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(48, 212);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(45, 15);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Estado:";
+            // 
             // HabitacionAsig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 411);
-            this.Controls.Add(this.label21);
+            this.Controls.Add(this.lbestado);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.chservicio);
+            this.Controls.Add(this.lbtotal);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.lbdias);
             this.Controls.Add(this.label19);
@@ -452,12 +513,11 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.bunifuButton21);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lbcamas);
+            this.Controls.Add(this.lbcapacidad);
+            this.Controls.Add(this.lbprecio);
+            this.Controls.Add(this.lbtipoh);
+            this.Controls.Add(this.lbnumh);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label8);
@@ -489,12 +549,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lbnumh;
+        private System.Windows.Forms.Label lbtipoh;
+        private System.Windows.Forms.Label lbprecio;
+        private System.Windows.Forms.Label lbcapacidad;
+        private System.Windows.Forms.Label lbcamas;
         private System.Windows.Forms.TextBox textBox1;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton21;
         private System.Windows.Forms.Label label16;
@@ -504,7 +563,10 @@
         private Bunifu.UI.WinForms.BunifuDatePicker fechasalida;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lbdias;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lbtotal;
         private System.Windows.Forms.Label label22;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch chservicio;
+        private System.Windows.Forms.Label lbestado;
+        private System.Windows.Forms.Label label11;
     }
 }
