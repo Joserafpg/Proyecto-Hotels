@@ -96,24 +96,34 @@ namespace Proyecto_Gregory
             {
                 DataGridViewRow row = dataGridView1.SelectedRows[0];
 
-                // Obtén los datos de la fila seleccionada
-                Int64 id = Convert.ToInt64(row.Cells[0].Value);
-                string numero_habitacion = row.Cells[1].Value.ToString();
-                string tipo_habitacion = Convert.ToString(row.Cells[2].Value);
-                decimal tarifa_noche = Convert.ToDecimal(row.Cells[3].Value);
-                Int64 capacidad_maxima = Convert.ToInt64(row.Cells[4].Value);
-                Int64 camas = Convert.ToInt64(row.Cells[5].Value);
-                bool servicio = Convert.ToBoolean(row.Cells[6].Value);
-                string estado = row.Cells[7].Value.ToString();;
+                string estado = row.Cells[7].Value.ToString();
 
-                // Abre el formulario para editar el producto
-                HabitacionAsig formEditar = new HabitacionAsig();
-                formEditar.EditMode = true; // Estás en modo editar
-                formEditar.InitializeData(id, numero_habitacion, tipo_habitacion, tarifa_noche, capacidad_maxima, camas, servicio, estado);
-                if (formEditar.ShowDialog() == DialogResult.OK)
+                // Verifica si el estado es igual a 'Reservado', 'Ocupado' o 'Limpieza'
+                if (estado == "Reservado" || estado == "Ocupado" || estado == "Limpieza")
                 {
-                    // Actualiza el DataGridView después de la edición
-                    Buscar();
+                    MessageBox.Show("No se puede asignar esta habitación, está en estado Reservado, Ocupado o Limpieza.", "Habitación no disponible", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+
+                    // Obtén los datos de la fila seleccionada
+                    Int64 id = Convert.ToInt64(row.Cells[0].Value);
+                    string numero_habitacion = row.Cells[1].Value.ToString();
+                    string tipo_habitacion = Convert.ToString(row.Cells[2].Value);
+                    decimal tarifa_noche = Convert.ToDecimal(row.Cells[3].Value);
+                    Int64 capacidad_maxima = Convert.ToInt64(row.Cells[4].Value);
+                    Int64 camas = Convert.ToInt64(row.Cells[5].Value);
+                    bool servicio = Convert.ToBoolean(row.Cells[6].Value);
+
+                    // Abre el formulario para editar el producto
+                    HabitacionAsig formEditar = new HabitacionAsig();
+                    formEditar.EditMode = true; // Estás en modo editar
+                    formEditar.InitializeData(id, numero_habitacion, tipo_habitacion, tarifa_noche, capacidad_maxima, camas, servicio, estado);
+                    if (formEditar.ShowDialog() == DialogResult.OK)
+                    {
+                        // Actualiza el DataGridView después de la edición
+                        Buscar();
+                    }
                 }
             }
         }
