@@ -64,6 +64,11 @@ Fecha_nacimiento datetime,
 
 
 select * from Acceso
+select * from Huespedes
+
+select * from Habitaciones
+select * from Detalle_Reservas
+
 
 DROP TABLE Habitaciones
 DROP TABLE Detalle_Reservas
