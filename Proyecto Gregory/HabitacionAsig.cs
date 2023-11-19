@@ -1,4 +1,5 @@
 ﻿using Proyecto_Gregory.Clases.Clientes;
+using Proyecto_Gregory.Clases.Habitaciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web.Services.Description;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Proyecto_Gregory
 {
@@ -75,7 +77,7 @@ namespace Proyecto_Gregory
                         // Es una cédula
                         command.Parameters.AddWithValue("@Id", DBNull.Value); // Valor nulo para ID
                         command.Parameters.AddWithValue("@Cedula", identificador);
-                    }   
+                    }
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -222,6 +224,135 @@ namespace Proyecto_Gregory
             }
 
             txtcodigo.Clear();
+        }
+
+        private void bunifuButton22_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                conn.Open();
+                string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog = Hotel; Integrated Security = True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Tu consulta SQL
+                    string consulta = "SELECT Empleado FROM Usuarios WHERE Usuario = (SELECT TOP 1 Usuario FROM Acceso ORDER BY Fecha DESC)";
+
+                    using (SqlCommand command = new SqlCommand(consulta, connection))
+                    {
+                        // Ejecutar la consulta y recuperar el valor
+                        string resultadoConsulta = command.ExecuteScalar() as string;
+
+                        // Asignar el resultado al TextBox
+                        txtempleado.Text = resultadoConsulta;
+                    }
+                }
+
+                DatosgetReserva pFactura = new DatosgetReserva();
+                pFactura.Habitacion = lbnumh.Text;
+                pFactura.fecha_entrada = fechaentrada.Value;
+                pFactura.fecha_salida = fechasalida.Value;
+                pFactura.Empleado = txtempleado.Text;
+                pFactura.Reserva_precio = Convert.ToDecimal(lbtotal.Text);
+
+                DatosbaseHabitaciones.Agregar(pFactura);
+
+                txtid.Visible = true;
+
+                // Consultar el último registro de Id_Factura en FacturaTittle
+                string query = "SELECT TOP 1 Id_Reserva FROM Reservas ORDER BY Id_Reserva DESC";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    // Obtener el resultado de la consulta
+                    object result = command.ExecuteScalar();
+
+                    // Verificar si se obtuvo un resultado válido
+                    if (result != null && result != DBNull.Value)
+                    {
+                        // Convertir el resultado en un entero
+                        int ultimoIdFactura = Convert.ToInt32(result);
+
+                        // Mostrar el último Id_Factura en un TextBox
+                        txtid.Text = ultimoIdFactura.ToString();
+                    }
+                }
+
+                conn.Close();
+                /*
+                SqlCommand agregar = new SqlCommand("INSERT INTO Factura VALUES (@No_Factura , @Codigo, @Producto, @Precio, @Cantidad, @Total)", conn);
+                string verificarQuery = "SELECT Cantidad FROM Productos WHERE Nombre = @Producto";
+                string actualizarQuery = "UPDATE Productos SET Cantidad = Cantidad - @Cantidad WHERE Nombre = @Producto";
+
+                conn.Open();
+
+                try
+                {
+                    foreach (DataGridViewRow row in dtgv.Rows)
+                    {
+                        // Obtener los valores de la fila actual del DataGridView
+                        Int64 idfactura = Convert.ToInt64(txtidfactura.Text);
+                        int id_producto = Convert.ToInt32(row.Cells["codigos"].Value);
+                        string producto = Convert.ToString(row.Cells["name"].Value);
+                        decimal precio = Convert.ToDecimal(row.Cells["precios"].Value);
+                        int cantidad = Convert.ToInt32(row.Cells["cantidad"].Value);
+                        decimal total = Convert.ToDecimal(row.Cells["Total"].Value);
+
+                        // Verificar si el Stock es menor que la Cantidad
+                        using (SqlCommand verificarCmd = new SqlCommand(verificarQuery, conn))
+                        {
+                            verificarCmd.Parameters.AddWithValue("@Producto", producto);
+                            int stock = Convert.ToInt32(verificarCmd.ExecuteScalar());
+
+                            if (stock < cantidad)
+                            {
+                                MessageBox.Show("No hay suficiente stock para el producto " + producto);
+                                return; // Salta a la siguiente iteración del bucle sin ejecutar el código restante
+                            }
+                        }
+
+                        // Agregar los parámetros al comando
+                        agregar.Parameters.Clear();
+                        agregar.Parameters.AddWithValue("@No_Factura", idfactura);
+                        agregar.Parameters.AddWithValue("@Codigo", id_producto);
+                        agregar.Parameters.AddWithValue("@Producto", producto);
+                        agregar.Parameters.AddWithValue("@Precio", precio);
+                        agregar.Parameters.AddWithValue("@Cantidad", cantidad);
+                        agregar.Parameters.AddWithValue("@Total", total);
+
+                        // Ejecutar el comando para agregar la factura
+                        agregar.ExecuteNonQuery();
+
+                        // Actualizar los datos de la tabla productos
+                        using (SqlCommand actualizarCmd = new SqlCommand(actualizarQuery, conn))
+                        {
+                            actualizarCmd.Parameters.AddWithValue("@Producto", producto);
+                            actualizarCmd.Parameters.AddWithValue("@Cantidad", cantidad);
+                            actualizarCmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Facturado con exito");
+                    dtgv.Rows.Clear();
+                    panel2.Visible = false;
+                    Limpiar();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al guardar: " + ex.Message);
+                }
+
+                finally
+                {
+                    conn.Close();
+                }*/
+            }
+        }
+
+        private void txtempleado_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

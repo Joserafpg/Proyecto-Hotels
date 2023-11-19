@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,6 +10,22 @@ namespace Proyecto_Gregory.Clases.Habitaciones
 {
     public class DatosbaseHabitaciones
     {
+        public static int Agregar(DatosgetReserva pget)
+        {
+
+            int retorno = 0;
+
+            Conexion.opencon();
+
+            SqlCommand Comando = new SqlCommand(string.Format("Insert into Reservas (Habitacion, Fecha_entrada, Fecha_salida, Empleado, Reserva_Precio) values ('{0}','{1}','{2}','{3}','{4}')",
+                    pget.Habitacion, pget.fecha_entrada.ToString("yyyy-MM-dd HH:mm:ss"), pget.fecha_salida.ToString("yyyy-MM-dd HH:mm:ss"),pget.Empleado, pget.Reserva_precio), Conexion.ObtenerConexion());
+
+            retorno = Comando.ExecuteNonQuery();
+            Conexion.cerrarcon();
+            return retorno;
+
+        }
+
         public static List<DatosgetHabitaciones> BuscarAlumnos(string pNumero, string pTipo, string pCapacidad, string pEstado)
         {
             List<DatosgetHabitaciones> lista = new List<DatosgetHabitaciones>();

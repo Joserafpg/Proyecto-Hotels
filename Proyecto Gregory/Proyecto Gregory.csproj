@@ -226,6 +226,7 @@
     <Compile Include="Clases\Datosgetregistro.cs" />
     <Compile Include="Clases\Habitaciones\DatosbaseHabitaciones.cs" />
     <Compile Include="Clases\Habitaciones\DatosgetHabitaciones.cs" />
+    <Compile Include="Clases\Habitaciones\DatosgetReserva.cs" />
     <Compile Include="Clases\Permisos.cs" />
     <Compile Include="Clientes.cs">
       <SubType>Form</SubType>
