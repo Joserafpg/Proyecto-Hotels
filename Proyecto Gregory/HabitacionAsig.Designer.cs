@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HabitacionAsig));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState1 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState2 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState4 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState5 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState6 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@
             this.lbprecio = new System.Windows.Forms.Label();
             this.lbcapacidad = new System.Windows.Forms.Label();
             this.lbcamas = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtcodigo = new System.Windows.Forms.TextBox();
             this.bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -62,6 +62,12 @@
             this.chservicio = new Bunifu.UI.WinForms.BunifuToggleSwitch();
             this.lbestado = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.idhuesped = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,10 +153,21 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idhuesped,
+            this.cedula,
+            this.nombre,
+            this.apellido,
+            this.telefono,
+            this.fecha_nacimiento});
             this.dataGridView1.Location = new System.Drawing.Point(357, 96);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(487, 150);
             this.dataGridView1.TabIndex = 8;
             // 
@@ -214,13 +231,13 @@
             this.lbcamas.TabIndex = 14;
             this.lbcamas.Text = "000";
             // 
-            // textBox1
+            // txtcodigo
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(627, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(107, 18);
-            this.textBox1.TabIndex = 17;
+            this.txtcodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcodigo.Location = new System.Drawing.Point(627, 65);
+            this.txtcodigo.Name = "txtcodigo";
+            this.txtcodigo.Size = new System.Drawing.Size(107, 18);
+            this.txtcodigo.TabIndex = 17;
             // 
             // bunifuButton21
             // 
@@ -236,16 +253,16 @@
             this.bunifuButton21.BackColor1 = System.Drawing.Color.DodgerBlue;
             this.bunifuButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton21.BackgroundImage")));
             this.bunifuButton21.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton21.ButtonText = "Buscar";
+            this.bunifuButton21.ButtonText = "Agregar";
             this.bunifuButton21.ButtonTextMarginLeft = 0;
             this.bunifuButton21.ColorContrastOnClick = 45;
             this.bunifuButton21.ColorContrastOnHover = 45;
             this.bunifuButton21.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.bunifuButton21.CustomizableEdges = borderEdges1;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.bunifuButton21.CustomizableEdges = borderEdges2;
             this.bunifuButton21.DialogResult = System.Windows.Forms.DialogResult.None;
             this.bunifuButton21.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton21.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -310,6 +327,7 @@
             this.bunifuButton21.TextMarginLeft = 0;
             this.bunifuButton21.TextPadding = new System.Windows.Forms.Padding(0);
             this.bunifuButton21.UseDefaultRadiusAndThickness = true;
+            this.bunifuButton21.Click += new System.EventHandler(this.bunifuButton21_Click);
             // 
             // label16
             // 
@@ -352,6 +370,7 @@
             this.fechaentrada.DisabledColor = System.Drawing.Color.Gray;
             this.fechaentrada.DisplayWeekNumbers = false;
             this.fechaentrada.DPHeight = 0;
+            this.fechaentrada.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.fechaentrada.FillDatePicker = false;
             this.fechaentrada.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.fechaentrada.ForeColor = System.Drawing.Color.Black;
@@ -360,7 +379,7 @@
             this.fechaentrada.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
             this.fechaentrada.LeftTextMargin = 5;
             this.fechaentrada.Location = new System.Drawing.Point(160, 306);
-            this.fechaentrada.MinimumSize = new System.Drawing.Size(0, 32);
+            this.fechaentrada.MinimumSize = new System.Drawing.Size(4, 32);
             this.fechaentrada.Name = "fechaentrada";
             this.fechaentrada.Size = new System.Drawing.Size(220, 32);
             this.fechaentrada.TabIndex = 22;
@@ -377,6 +396,7 @@
             this.fechasalida.DisabledColor = System.Drawing.Color.Gray;
             this.fechasalida.DisplayWeekNumbers = false;
             this.fechasalida.DPHeight = 0;
+            this.fechasalida.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.fechasalida.FillDatePicker = false;
             this.fechasalida.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.fechasalida.ForeColor = System.Drawing.Color.Black;
@@ -385,7 +405,7 @@
             this.fechasalida.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
             this.fechasalida.LeftTextMargin = 5;
             this.fechasalida.Location = new System.Drawing.Point(160, 354);
-            this.fechasalida.MinimumSize = new System.Drawing.Size(0, 32);
+            this.fechasalida.MinimumSize = new System.Drawing.Size(4, 32);
             this.fechasalida.Name = "fechasalida";
             this.fechasalida.Size = new System.Drawing.Size(220, 32);
             this.fechasalida.TabIndex = 23;
@@ -445,33 +465,33 @@
             this.chservicio.Size = new System.Drawing.Size(30, 16);
             this.chservicio.TabIndex = 15;
             this.chservicio.ThumbMargin = 3;
-            toggleState1.BackColor = System.Drawing.Color.DarkGray;
-            toggleState1.BackColorInner = System.Drawing.Color.White;
-            toggleState1.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState1.BorderColorInner = System.Drawing.Color.White;
-            toggleState1.BorderRadius = 17;
-            toggleState1.BorderRadiusInner = 11;
-            toggleState1.BorderThickness = 1;
-            toggleState1.BorderThicknessInner = 1;
-            this.chservicio.ToggleStateDisabled = toggleState1;
-            toggleState2.BackColor = System.Drawing.Color.Empty;
-            toggleState2.BackColorInner = System.Drawing.Color.Empty;
-            toggleState2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(0)))), ((int)(((byte)(140)))));
-            toggleState2.BorderColorInner = System.Drawing.Color.Empty;
-            toggleState2.BorderRadius = 1;
-            toggleState2.BorderRadiusInner = 1;
-            toggleState2.BorderThickness = 1;
-            toggleState2.BorderThicknessInner = 1;
-            this.chservicio.ToggleStateOff = toggleState2;
-            toggleState3.BackColor = System.Drawing.Color.DodgerBlue;
-            toggleState3.BackColorInner = System.Drawing.Color.White;
-            toggleState3.BorderColor = System.Drawing.Color.DodgerBlue;
-            toggleState3.BorderColorInner = System.Drawing.Color.White;
-            toggleState3.BorderRadius = 15;
-            toggleState3.BorderRadiusInner = 9;
-            toggleState3.BorderThickness = 1;
-            toggleState3.BorderThicknessInner = 1;
-            this.chservicio.ToggleStateOn = toggleState3;
+            toggleState4.BackColor = System.Drawing.Color.DarkGray;
+            toggleState4.BackColorInner = System.Drawing.Color.White;
+            toggleState4.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState4.BorderColorInner = System.Drawing.Color.White;
+            toggleState4.BorderRadius = 17;
+            toggleState4.BorderRadiusInner = 11;
+            toggleState4.BorderThickness = 1;
+            toggleState4.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateDisabled = toggleState4;
+            toggleState5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState5.BackColorInner = System.Drawing.Color.White;
+            toggleState5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState5.BorderColorInner = System.Drawing.Color.White;
+            toggleState5.BorderRadius = 15;
+            toggleState5.BorderRadiusInner = 9;
+            toggleState5.BorderThickness = 1;
+            toggleState5.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateOff = toggleState5;
+            toggleState6.BackColor = System.Drawing.Color.DodgerBlue;
+            toggleState6.BackColorInner = System.Drawing.Color.White;
+            toggleState6.BorderColor = System.Drawing.Color.DodgerBlue;
+            toggleState6.BorderColorInner = System.Drawing.Color.White;
+            toggleState6.BorderRadius = 15;
+            toggleState6.BorderRadiusInner = 9;
+            toggleState6.BorderThickness = 1;
+            toggleState6.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateOn = toggleState6;
             this.chservicio.Value = true;
             // 
             // lbestado
@@ -494,6 +514,45 @@
             this.label11.TabIndex = 29;
             this.label11.Text = "Estado:";
             // 
+            // idhuesped
+            // 
+            this.idhuesped.HeaderText = "Codigo";
+            this.idhuesped.Name = "idhuesped";
+            this.idhuesped.ReadOnly = true;
+            this.idhuesped.Width = 60;
+            // 
+            // cedula
+            // 
+            this.cedula.HeaderText = "Cedula";
+            this.cedula.Name = "cedula";
+            this.cedula.ReadOnly = true;
+            this.cedula.Width = 80;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // apellido
+            // 
+            this.apellido.HeaderText = "Apellido";
+            this.apellido.Name = "apellido";
+            this.apellido.ReadOnly = true;
+            // 
+            // telefono
+            // 
+            this.telefono.HeaderText = "Telefono";
+            this.telefono.Name = "telefono";
+            this.telefono.ReadOnly = true;
+            this.telefono.Width = 70;
+            // 
+            // fecha_nacimiento
+            // 
+            this.fecha_nacimiento.HeaderText = "Fecha nacimiento";
+            this.fecha_nacimiento.Name = "fecha_nacimiento";
+            this.fecha_nacimiento.ReadOnly = true;
+            // 
             // HabitacionAsig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,7 +571,7 @@
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.bunifuButton21);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtcodigo);
             this.Controls.Add(this.lbcamas);
             this.Controls.Add(this.lbcapacidad);
             this.Controls.Add(this.lbprecio);
@@ -554,7 +613,7 @@
         private System.Windows.Forms.Label lbprecio;
         private System.Windows.Forms.Label lbcapacidad;
         private System.Windows.Forms.Label lbcamas;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtcodigo;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton21;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
@@ -568,5 +627,11 @@
         private Bunifu.UI.WinForms.BunifuToggleSwitch chservicio;
         private System.Windows.Forms.Label lbestado;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idhuesped;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nacimiento;
     }
 }

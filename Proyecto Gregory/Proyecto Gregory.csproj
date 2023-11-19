@@ -220,6 +220,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Clientes\Huespedes.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\DatosbaseRegistro.cs" />
     <Compile Include="Clases\Datosgetregistro.cs" />
@@ -316,7 +317,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Clases\Clientes\" />
     <Folder Include="Clases\Facturacion\" />
     <Folder Include="Clases\Usuarios\" />
   </ItemGroup>

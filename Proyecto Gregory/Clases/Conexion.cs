@@ -10,7 +10,7 @@ namespace Proyecto_Gregory.Clases
 {
     public class Conexion
     {
-        private static SqlConnection Conn = new SqlConnection("Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True");
+        private static SqlConnection Conn = new SqlConnection("Data source = DESKTOP-NDDA7LS; Initial Catalog=Hotel; Integrated Security=True");
 
         public static SqlConnection ObtenerConexion()
         {
