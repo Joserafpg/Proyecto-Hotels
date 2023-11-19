@@ -42,15 +42,23 @@ Servicio_habitacion bit,
 Estado varchar (20)
 )
 
-create table Detalle_Reservas (
+create table Reservas(
 Id_Reserva INT IDENTITY (1,1) PRIMARY KEY NOT NULL,
 Habitacion varchar (30),
-Id_Huesped int,
-Huespede varchar (50),
 Fecha_entrada datetime,
 Fecha_salida datetime,
 Empleado varchar (50),
 Reserva_Precio decimal (38),
+)
+
+create table Detalle_Reservas (
+Id_Reserva INT,
+Id_Huesped int,
+Cedula varchar (50),
+Nombre varchar (20),
+Apellido varchar (20),
+Telefono varchar (20),
+Fecha_nacimiento datetime,
 )
 
 create table Huespedes(
@@ -67,10 +75,13 @@ select * from Acceso
 select * from Huespedes
 
 select * from Habitaciones
+select * from Reservas
 select * from Detalle_Reservas
 
 
 DROP TABLE Habitaciones
 DROP TABLE Detalle_Reservas
+DROP TABLE Reservas
+
 
 DROP DATABASE Hotel

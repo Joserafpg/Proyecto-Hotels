@@ -279,46 +279,36 @@ namespace Proyecto_Gregory
                 }
 
                 conn.Close();
-                /*
-                SqlCommand agregar = new SqlCommand("INSERT INTO Factura VALUES (@No_Factura , @Codigo, @Producto, @Precio, @Cantidad, @Total)", conn);
-                string verificarQuery = "SELECT Cantidad FROM Productos WHERE Nombre = @Producto";
-                string actualizarQuery = "UPDATE Productos SET Cantidad = Cantidad - @Cantidad WHERE Nombre = @Producto";
+                
+                SqlCommand agregar = new SqlCommand("INSERT INTO Detalle_Reservas VALUES (@Id_Reserva, @Id_Huesped, @Cedula, @Nombre, @Apellido, @Telefono, @Fecha_nacimiento)", conn);
+                //string verificarQuery = "SELECT Cantidad FROM Productos WHERE Nombre = @Producto";
+                string actualizarQuery = "UPDATE Habitaciones SET Estado = 'Ocupado' WHERE Numero_habitacion = @Habitacion";
+
 
                 conn.Open();
 
                 try
                 {
-                    foreach (DataGridViewRow row in dtgv.Rows)
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         // Obtener los valores de la fila actual del DataGridView
-                        Int64 idfactura = Convert.ToInt64(txtidfactura.Text);
-                        int id_producto = Convert.ToInt32(row.Cells["codigos"].Value);
-                        string producto = Convert.ToString(row.Cells["name"].Value);
-                        decimal precio = Convert.ToDecimal(row.Cells["precios"].Value);
-                        int cantidad = Convert.ToInt32(row.Cells["cantidad"].Value);
-                        decimal total = Convert.ToDecimal(row.Cells["Total"].Value);
-
-                        // Verificar si el Stock es menor que la Cantidad
-                        using (SqlCommand verificarCmd = new SqlCommand(verificarQuery, conn))
-                        {
-                            verificarCmd.Parameters.AddWithValue("@Producto", producto);
-                            int stock = Convert.ToInt32(verificarCmd.ExecuteScalar());
-
-                            if (stock < cantidad)
-                            {
-                                MessageBox.Show("No hay suficiente stock para el producto " + producto);
-                                return; // Salta a la siguiente iteración del bucle sin ejecutar el código restante
-                            }
-                        }
+                        Int64 idfactura = Convert.ToInt64(txtid.Text);
+                        int id_huesped = Convert.ToInt32(row.Cells["idhuesped"].Value);
+                        string cedula = Convert.ToString(row.Cells["cedula"].Value);
+                        string nombre = Convert.ToString(row.Cells["nombre"].Value);
+                        string apellido = Convert.ToString(row.Cells["apellido"].Value);
+                        string telefono = Convert.ToString(row.Cells["telefono"].Value);
+                        DateTime fecha = Convert.ToDateTime(row.Cells["fecha_nacimiento"].Value); 
 
                         // Agregar los parámetros al comando
                         agregar.Parameters.Clear();
-                        agregar.Parameters.AddWithValue("@No_Factura", idfactura);
-                        agregar.Parameters.AddWithValue("@Codigo", id_producto);
-                        agregar.Parameters.AddWithValue("@Producto", producto);
-                        agregar.Parameters.AddWithValue("@Precio", precio);
-                        agregar.Parameters.AddWithValue("@Cantidad", cantidad);
-                        agregar.Parameters.AddWithValue("@Total", total);
+                        agregar.Parameters.AddWithValue("@Id_Reserva", idfactura);
+                        agregar.Parameters.AddWithValue("@Id_Huesped", id_huesped);
+                        agregar.Parameters.AddWithValue("@Cedula", cedula);
+                        agregar.Parameters.AddWithValue("@Nombre", nombre);
+                        agregar.Parameters.AddWithValue("@Apellido", apellido);;
+                        agregar.Parameters.AddWithValue("@Telefono", telefono);
+                        agregar.Parameters.AddWithValue("@Fecha_nacimiento", fecha);
 
                         // Ejecutar el comando para agregar la factura
                         agregar.ExecuteNonQuery();
@@ -326,16 +316,14 @@ namespace Proyecto_Gregory
                         // Actualizar los datos de la tabla productos
                         using (SqlCommand actualizarCmd = new SqlCommand(actualizarQuery, conn))
                         {
-                            actualizarCmd.Parameters.AddWithValue("@Producto", producto);
-                            actualizarCmd.Parameters.AddWithValue("@Cantidad", cantidad);
+                            actualizarCmd.Parameters.AddWithValue("@Habitacion", lbnumh.Text);
                             actualizarCmd.ExecuteNonQuery();
                         }
                     }
 
                     MessageBox.Show("Facturado con exito");
-                    dtgv.Rows.Clear();
-                    panel2.Visible = false;
-                    Limpiar();
+                    dataGridView1.Rows.Clear();
+                    //Limpiar();
                 }
 
                 catch (Exception ex)
@@ -346,7 +334,7 @@ namespace Proyecto_Gregory
                 finally
                 {
                     conn.Close();
-                }*/
+                }
             }
         }
 

@@ -16,7 +16,7 @@ namespace Proyecto_Gregory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Habitaciones());
+            Application.Run(new Login());
         }
     }
 }
