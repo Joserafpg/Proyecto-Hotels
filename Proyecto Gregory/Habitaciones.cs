@@ -20,6 +20,7 @@ namespace Proyecto_Gregory
         }
 
         public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-7EFN9F7; database=Hotel; Integrated Security=True");
+        public string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
 
         void CargarComboBox()
         {
@@ -69,10 +70,34 @@ namespace Proyecto_Gregory
             dataGridView1.DataSource = DatosbaseHabitaciones.BuscarAlumnos(txtBuscar.Text, cClase.Text, cCapacidad.Text, cDisponibilidad.Text);
         }
 
+        void UPDATE()
+        {
+            string procedureName = "ActualizarEstadoHabitacion";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand(procedureName, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Procedimiento ejecutado exitosamente");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+        }
+
         private void Habitaciones_Load(object sender, EventArgs e)
         {
             Buscar();
             CargarComboBox();
+            UPDATE();
         }
 
         private void bunifuButton24_Click(object sender, EventArgs e)

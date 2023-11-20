@@ -132,4 +132,48 @@ END;
 
 exec ActualizarEstadoHabitacion
 
-drop procedure ActualizarEstadoHabitacion
+
+CREATE PROCEDURE HabitacionesEnUso
+AS
+BEGIN
+    SELECT COUNT(Id_Reserva) AS 'CantidadHabitacionesEnUso'
+    FROM Reservas 
+    WHERE Fecha_salida > GETDATE();
+END;
+
+EXEC HabitacionesEnUso
+
+
+CREATE PROCEDURE HUESPEDESTOTALES
+AS
+BEGIN
+    SELECT COUNT(Id_Huesped) AS 'HUESPEDESTOTALES'
+    FROM Detalle_Reservas 
+    WHERE Fecha_salida > GETDATE();
+END;
+
+EXEC HUESPEDESTOTALES
+
+
+CREATE PROCEDURE HABITACIONESDISPONIBLES
+AS
+BEGIN
+    DECLARE @TotalHabitaciones INT;
+	DECLARE @HabitacionesEnUso INT;
+
+	SELECT @TotalHabitaciones = COUNT(ID_Habitacion)
+	FROM Habitaciones;
+
+	SELECT @HabitacionesEnUso = COUNT(Id_Reserva)
+	FROM Reservas 
+	WHERE Fecha_salida > GETDATE();
+
+SELECT (@TotalHabitaciones - @HabitacionesEnUso) AS 'HabitacionesDisponibles';
+END;
+
+EXEC HABITACIONESDISPONIBLES
+
+
+
+
+drop procedure HABITACIONESTOTALES

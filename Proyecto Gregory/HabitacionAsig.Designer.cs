@@ -649,7 +649,7 @@
             // 
             // txtempleado
             // 
-            this.txtempleado.Location = new System.Drawing.Point(678, 12);
+            this.txtempleado.Location = new System.Drawing.Point(983, 12);
             this.txtempleado.Name = "txtempleado";
             this.txtempleado.Size = new System.Drawing.Size(100, 20);
             this.txtempleado.TabIndex = 32;
@@ -657,7 +657,7 @@
             // 
             // txtid
             // 
-            this.txtid.Location = new System.Drawing.Point(572, 12);
+            this.txtid.Location = new System.Drawing.Point(877, 12);
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(100, 20);
             this.txtid.TabIndex = 33;
@@ -700,6 +700,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "HabitacionAsig";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HabitacionAsig";
             this.Load += new System.EventHandler(this.HabitacionAsig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

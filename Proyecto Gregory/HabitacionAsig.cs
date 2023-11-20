@@ -155,9 +155,11 @@ namespace Proyecto_Gregory
                 connection.Open();
 
                 // Consulta SQL para verificar la reserva activa del huésped por su nombre y fecha de salida superior a la fecha actual
-                string query = @"SELECT COUNT(*) FROM Detalle_Reservas AS DR
-                         INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
-                         WHERE DR.Nombre = @Nombre AND R.Fecha_salida > @FechaActual";
+                string query = @"SELECT COUNT(*)
+                                FROM Detalle_Reservas AS DR
+                                INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
+                                WHERE DR.Nombre = @Nombre 
+                                AND R.Fecha_salida >= @FechaActual";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -186,6 +188,7 @@ namespace Proyecto_Gregory
                 {
                     try
                     {
+                        bunifuButton22.Visible = false;
                         connection.Open();
 
                         string habitacion = lbnumh.Text;
@@ -288,34 +291,7 @@ namespace Proyecto_Gregory
                     MessageBox.Show("No se encontró ningún huésped con el ID especificado.");
                 }
             }
-            else
-            {
-                // Intentar buscar por cédula si el texto no es un número (asumiendo que el campo txtcodigo es para cédula)
-                string cedula = txtcodigo.Text;
-
-                // Obtener el huésped por cédula
-                Huespedes huespedPorCedula = ObtenerHuesped(cedula);
-
-                if (huespedPorCedula != null)
-                {
-                    // Verificar si el huésped ya tiene una reserva activa
-                    bool tieneReserva = VerificarReservaActiva(huespedPorCedula.Nombre, fechaHoy);
-
-                    if (tieneReserva)
-                    {
-                        MessageBox.Show("El huésped ya tiene una reserva activa.");
-                        return;
-                    }
-
-                    // Verificar si el huésped ya está en el DataGridView y realizar la acción correspondiente
-                    VerificarAgregarModificarProducto(huespedPorCedula);
-                }
-                else
-                {
-                    MessageBox.Show("No se encontró ningún huésped con la cédula especificada.");
-                }
-            }
-
+         
             txtcodigo.Clear();
         }
 
@@ -431,6 +407,8 @@ namespace Proyecto_Gregory
                 {
                     conn.Close();
                 }
+
+                this.Close();
             }
         }
 

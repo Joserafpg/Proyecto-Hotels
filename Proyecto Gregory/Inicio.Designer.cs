@@ -30,20 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.bunifuPanel3 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.bunifuPanel4 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.bunifuShapes1 = new Bunifu.UI.WinForms.BunifuShapes();
             this.bunifuShapes2 = new Bunifu.UI.WinForms.BunifuShapes();
+            this.bunifuShapes1 = new Bunifu.UI.WinForms.BunifuShapes();
+            this.huespedestotales = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuShapes3 = new Bunifu.UI.WinForms.BunifuShapes();
             this.bunifuShapes4 = new Bunifu.UI.WinForms.BunifuShapes();
+            this.habitacionesdisponibles = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.bunifuPanel4 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuShapes5 = new Bunifu.UI.WinForms.BunifuShapes();
             this.bunifuShapes6 = new Bunifu.UI.WinForms.BunifuShapes();
+            this.habitacionesenuso = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.bunifuPanel3.SuspendLayout();
             this.bunifuPanel1.SuspendLayout();
             this.bunifuPanel4.SuspendLayout();
@@ -59,7 +59,7 @@
             this.bunifuPanel3.BorderThickness = 0;
             this.bunifuPanel3.Controls.Add(this.bunifuShapes2);
             this.bunifuPanel3.Controls.Add(this.bunifuShapes1);
-            this.bunifuPanel3.Controls.Add(this.label2);
+            this.bunifuPanel3.Controls.Add(this.huespedestotales);
             this.bunifuPanel3.Controls.Add(this.label1);
             this.bunifuPanel3.Location = new System.Drawing.Point(88, 22);
             this.bunifuPanel3.Name = "bunifuPanel3";
@@ -67,113 +67,21 @@
             this.bunifuPanel3.Size = new System.Drawing.Size(250, 120);
             this.bunifuPanel3.TabIndex = 3;
             // 
-            // bunifuPanel1
+            // bunifuShapes2
             // 
-            this.bunifuPanel1.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
-            this.bunifuPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel1.BackgroundImage")));
-            this.bunifuPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
-            this.bunifuPanel1.BorderRadius = 35;
-            this.bunifuPanel1.BorderThickness = 1;
-            this.bunifuPanel1.Controls.Add(this.bunifuShapes3);
-            this.bunifuPanel1.Controls.Add(this.bunifuShapes4);
-            this.bunifuPanel1.Controls.Add(this.label3);
-            this.bunifuPanel1.Controls.Add(this.label4);
-            this.bunifuPanel1.Location = new System.Drawing.Point(349, 22);
-            this.bunifuPanel1.Name = "bunifuPanel1";
-            this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(250, 120);
-            this.bunifuPanel1.TabIndex = 4;
-            // 
-            // bunifuPanel4
-            // 
-            this.bunifuPanel4.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
-            this.bunifuPanel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel4.BackgroundImage")));
-            this.bunifuPanel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuPanel4.BorderColor = System.Drawing.Color.Transparent;
-            this.bunifuPanel4.BorderRadius = 35;
-            this.bunifuPanel4.BorderThickness = 1;
-            this.bunifuPanel4.Controls.Add(this.bunifuShapes5);
-            this.bunifuPanel4.Controls.Add(this.bunifuShapes6);
-            this.bunifuPanel4.Controls.Add(this.label5);
-            this.bunifuPanel4.Controls.Add(this.label6);
-            this.bunifuPanel4.Location = new System.Drawing.Point(610, 22);
-            this.bunifuPanel4.Name = "bunifuPanel4";
-            this.bunifuPanel4.ShowBorders = true;
-            this.bunifuPanel4.Size = new System.Drawing.Size(250, 120);
-            this.bunifuPanel4.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(26, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Huespedes totales";
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(29, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(184, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "000";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(29, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(184, 23);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "000";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(26, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(179, 17);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Habitaciones disponibles";
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(29, 50);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(184, 23);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "000";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(26, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(170, 17);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Habitaciones ocupadas";
+            this.bunifuShapes2.Angle = 0F;
+            this.bunifuShapes2.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuShapes2.BorderColor = System.Drawing.Color.Silver;
+            this.bunifuShapes2.BorderThickness = 2;
+            this.bunifuShapes2.FillColor = System.Drawing.Color.Transparent;
+            this.bunifuShapes2.FillShape = true;
+            this.bunifuShapes2.Location = new System.Drawing.Point(228, 62);
+            this.bunifuShapes2.Name = "bunifuShapes2";
+            this.bunifuShapes2.Shape = Bunifu.UI.WinForms.BunifuShapes.Shapes.Circle;
+            this.bunifuShapes2.Sides = 5;
+            this.bunifuShapes2.Size = new System.Drawing.Size(5, 5);
+            this.bunifuShapes2.TabIndex = 3;
+            this.bunifuShapes2.Text = "bunifuShapes2";
             // 
             // bunifuShapes1
             // 
@@ -191,21 +99,47 @@
             this.bunifuShapes1.TabIndex = 2;
             this.bunifuShapes1.Text = "bunifuShapes1";
             // 
-            // bunifuShapes2
+            // huespedestotales
             // 
-            this.bunifuShapes2.Angle = 0F;
-            this.bunifuShapes2.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuShapes2.BorderColor = System.Drawing.Color.Silver;
-            this.bunifuShapes2.BorderThickness = 2;
-            this.bunifuShapes2.FillColor = System.Drawing.Color.Transparent;
-            this.bunifuShapes2.FillShape = true;
-            this.bunifuShapes2.Location = new System.Drawing.Point(228, 62);
-            this.bunifuShapes2.Name = "bunifuShapes2";
-            this.bunifuShapes2.Shape = Bunifu.UI.WinForms.BunifuShapes.Shapes.Circle;
-            this.bunifuShapes2.Sides = 5;
-            this.bunifuShapes2.Size = new System.Drawing.Size(5, 5);
-            this.bunifuShapes2.TabIndex = 3;
-            this.bunifuShapes2.Text = "bunifuShapes2";
+            this.huespedestotales.BackColor = System.Drawing.Color.Transparent;
+            this.huespedestotales.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.huespedestotales.ForeColor = System.Drawing.Color.White;
+            this.huespedestotales.Location = new System.Drawing.Point(29, 50);
+            this.huespedestotales.Name = "huespedestotales";
+            this.huespedestotales.Size = new System.Drawing.Size(184, 23);
+            this.huespedestotales.TabIndex = 1;
+            this.huespedestotales.Text = "000";
+            this.huespedestotales.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(26, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Huespedes totales";
+            // 
+            // bunifuPanel1
+            // 
+            this.bunifuPanel1.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bunifuPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel1.BackgroundImage")));
+            this.bunifuPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
+            this.bunifuPanel1.BorderRadius = 35;
+            this.bunifuPanel1.BorderThickness = 1;
+            this.bunifuPanel1.Controls.Add(this.bunifuShapes3);
+            this.bunifuPanel1.Controls.Add(this.bunifuShapes4);
+            this.bunifuPanel1.Controls.Add(this.habitacionesdisponibles);
+            this.bunifuPanel1.Controls.Add(this.label4);
+            this.bunifuPanel1.Location = new System.Drawing.Point(349, 22);
+            this.bunifuPanel1.Name = "bunifuPanel1";
+            this.bunifuPanel1.ShowBorders = true;
+            this.bunifuPanel1.Size = new System.Drawing.Size(250, 120);
+            this.bunifuPanel1.TabIndex = 4;
             // 
             // bunifuShapes3
             // 
@@ -239,6 +173,48 @@
             this.bunifuShapes4.TabIndex = 4;
             this.bunifuShapes4.Text = "bunifuShapes4";
             // 
+            // habitacionesdisponibles
+            // 
+            this.habitacionesdisponibles.BackColor = System.Drawing.Color.Transparent;
+            this.habitacionesdisponibles.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.habitacionesdisponibles.ForeColor = System.Drawing.Color.White;
+            this.habitacionesdisponibles.Location = new System.Drawing.Point(29, 50);
+            this.habitacionesdisponibles.Name = "habitacionesdisponibles";
+            this.habitacionesdisponibles.Size = new System.Drawing.Size(184, 23);
+            this.habitacionesdisponibles.TabIndex = 3;
+            this.habitacionesdisponibles.Text = "000";
+            this.habitacionesdisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(26, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(179, 17);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Habitaciones disponibles";
+            // 
+            // bunifuPanel4
+            // 
+            this.bunifuPanel4.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bunifuPanel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel4.BackgroundImage")));
+            this.bunifuPanel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuPanel4.BorderColor = System.Drawing.Color.Transparent;
+            this.bunifuPanel4.BorderRadius = 35;
+            this.bunifuPanel4.BorderThickness = 1;
+            this.bunifuPanel4.Controls.Add(this.bunifuShapes5);
+            this.bunifuPanel4.Controls.Add(this.bunifuShapes6);
+            this.bunifuPanel4.Controls.Add(this.habitacionesenuso);
+            this.bunifuPanel4.Controls.Add(this.label6);
+            this.bunifuPanel4.Location = new System.Drawing.Point(610, 22);
+            this.bunifuPanel4.Name = "bunifuPanel4";
+            this.bunifuPanel4.ShowBorders = true;
+            this.bunifuPanel4.Size = new System.Drawing.Size(250, 120);
+            this.bunifuPanel4.TabIndex = 5;
+            // 
             // bunifuShapes5
             // 
             this.bunifuShapes5.Angle = 0F;
@@ -271,6 +247,30 @@
             this.bunifuShapes6.TabIndex = 4;
             this.bunifuShapes6.Text = "bunifuShapes6";
             // 
+            // habitacionesenuso
+            // 
+            this.habitacionesenuso.BackColor = System.Drawing.Color.Transparent;
+            this.habitacionesenuso.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.habitacionesenuso.ForeColor = System.Drawing.Color.White;
+            this.habitacionesenuso.Location = new System.Drawing.Point(29, 50);
+            this.habitacionesenuso.Name = "habitacionesenuso";
+            this.habitacionesenuso.Size = new System.Drawing.Size(184, 23);
+            this.habitacionesenuso.TabIndex = 5;
+            this.habitacionesenuso.Text = "000";
+            this.habitacionesenuso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(26, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(170, 17);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Habitaciones ocupadas";
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,6 +283,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Inicio";
             this.Text = "Inicio";
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.bunifuPanel3.ResumeLayout(false);
             this.bunifuPanel3.PerformLayout();
             this.bunifuPanel1.ResumeLayout(false);
@@ -299,15 +300,15 @@
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel4;
         private Bunifu.UI.WinForms.BunifuShapes bunifuShapes2;
         private Bunifu.UI.WinForms.BunifuShapes bunifuShapes1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label huespedestotales;
         private System.Windows.Forms.Label label1;
         private Bunifu.UI.WinForms.BunifuShapes bunifuShapes3;
         private Bunifu.UI.WinForms.BunifuShapes bunifuShapes4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label habitacionesdisponibles;
         private System.Windows.Forms.Label label4;
         private Bunifu.UI.WinForms.BunifuShapes bunifuShapes5;
         private Bunifu.UI.WinForms.BunifuShapes bunifuShapes6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label habitacionesenuso;
         private System.Windows.Forms.Label label6;
     }
 }
