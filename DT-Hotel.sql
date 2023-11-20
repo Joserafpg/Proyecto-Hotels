@@ -53,11 +53,13 @@ Reserva_Precio decimal (38),
 
 create table Detalle_Reservas (
 Id_Reserva INT,
+Habitacion varchar (20),
 Id_Huesped int,
 Cedula varchar (50),
 Nombre varchar (20),
 Apellido varchar (20),
 Telefono varchar (20),
+Fecha_salida datetime,
 Fecha_nacimiento datetime,
 )
 
@@ -85,3 +87,25 @@ DROP TABLE Reservas
 
 
 DROP DATABASE Hotel
+
+
+
+/*Pruebas*/
+SELECT COUNT(*) FROM Detalle_Reservas AS DR
+                         INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
+                         WHERE DR.Nombre = @Nombre AND R.Fecha_salida > @FechaActual
+
+SELECT COUNT(*) FROM Detalle_Reservas AS DR
+                         INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
+                         WHERE DR.Nombre = 'Reynaldo Antonio' AND R.Fecha_salida > GETDATE()
+
+
+SELECT (Id_Reserva) FROM Reservas WHERE Fecha_salida > GETDATE()
+
+SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Detalle_Reservas
+
+
+SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento
+                                                       FROM Detalle_Reservas
+                                                       WHERE Habitacion = 'E1-08' 
+                                                       AND Fecha_salida >= GETDATE()

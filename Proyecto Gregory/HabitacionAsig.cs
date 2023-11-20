@@ -188,21 +188,20 @@ namespace Proyecto_Gregory
                     {
                         connection.Open();
 
-                        string query = "SELECT MAX(Id_Reserva) FROM Reservas WHERE Fecha_salida > GETDATE()";
-                        SqlCommand command = new SqlCommand(query, connection);
-                        Int32 ultimoId = (Int32)command.ExecuteScalar();
+                        string habitacion = lbnumh.Text;
 
-                        // Ahora que tienes el último ID de reserva, busca los registros en Detalle_Reservas
-                        string queryDetallesReservas = "SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Detalle_Reservas WHERE Id_Reserva = @UltimoId";
+                        string queryDetallesReservas = "SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento " +
+                                                       "FROM Detalle_Reservas " +
+                                                       "WHERE Habitacion = @NombreHabitacion " +
+                                                       "AND Fecha_salida >= GETDATE()";
+
                         SqlCommand commandDetallesReservas = new SqlCommand(queryDetallesReservas, connection);
-                        commandDetallesReservas.Parameters.AddWithValue("@UltimoId", ultimoId);
+                        commandDetallesReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
 
-                        // Utiliza un SqlDataAdapter para llenar un DataTable con los resultados
                         SqlDataAdapter adapter = new SqlDataAdapter(commandDetallesReservas);
                         DataTable detallesReservasTable = new DataTable();
                         adapter.Fill(detallesReservasTable);
 
-                        // Asigna los datos a celdas específicas del DataGridView
                         if (detallesReservasTable.Rows.Count > 0)
                         {
                             dataGridView1.Rows.Clear();
@@ -215,7 +214,7 @@ namespace Proyecto_Gregory
                         }
                         else
                         {
-                            MessageBox.Show("No se encontraron detalles de reserva para el ID proporcionado.");
+                            MessageBox.Show("No se encontraron detalles de reserva activa para el nombre de habitación proporcionado.");
                         }
                     }
                     catch (Exception ex)
@@ -373,7 +372,7 @@ namespace Proyecto_Gregory
 
                 conn.Close();
                 
-                SqlCommand agregar = new SqlCommand("INSERT INTO Detalle_Reservas VALUES (@Id_Reserva, @Id_Huesped, @Cedula, @Nombre, @Apellido, @Telefono, @Fecha_nacimiento)", conn);
+                SqlCommand agregar = new SqlCommand("INSERT INTO Detalle_Reservas VALUES (@Id_Reserva, @Habitaciones, @Id_Huesped, @Cedula, @Nombre, @Apellido, @Telefono, @fecha, @Fecha_nacimiento)", conn);
                 //string verificarQuery = "SELECT Cantidad FROM Productos WHERE Nombre = @Producto";
                 string actualizarQuery = "UPDATE Habitaciones SET Estado = 'Ocupado' WHERE Numero_habitacion = @Habitacion";
 
@@ -386,15 +385,19 @@ namespace Proyecto_Gregory
                     {
                         // Obtener los valores de la fila actual del DataGridView
                         Int64 idfactura = Convert.ToInt64(txtid.Text);
+                        string habitacion = Convert.ToString(lbnumh.Text);
                         int id_huesped = Convert.ToInt32(row.Cells["idhuesped"].Value);
                         string cedula = Convert.ToString(row.Cells["cedula"].Value);
                         string nombre = Convert.ToString(row.Cells["nombre"].Value);
                         string apellido = Convert.ToString(row.Cells["apellido"].Value);
                         string telefono = Convert.ToString(row.Cells["telefono"].Value);
                         DateTime fecha = Convert.ToDateTime(row.Cells["fecha_nacimiento"].Value); 
+                        DateTime fechasa = fechasalida.Value; 
 
                         // Agregar los parámetros al comando
                         agregar.Parameters.Clear();
+                        agregar.Parameters.AddWithValue("@fecha", fechasa);
+                        agregar.Parameters.AddWithValue("@Habitaciones", habitacion);
                         agregar.Parameters.AddWithValue("@Id_Reserva", idfactura);
                         agregar.Parameters.AddWithValue("@Id_Huesped", id_huesped);
                         agregar.Parameters.AddWithValue("@Cedula", cedula);
