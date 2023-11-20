@@ -23,6 +23,7 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
         public bool EditMode { get; set; }
+        public string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
 
         public void InitializeData(Int64 id, string numero_habitacion, string tipo_habitacion, decimal tarifa_noche, Int64 capacidad_maxima, Int64 camas, bool servicio, string estado)
         {
@@ -53,9 +54,6 @@ namespace Proyecto_Gregory
         private Huespedes ObtenerHuesped(string identificador)
         {
             Huespedes huesped = null;
-
-            // Cadena de conexión a la base de datos
-            string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
 
             // Consulta SQL para obtener el huésped por ID o cédula
             string query = "SELECT ID_Huespedes, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Huespedes WHERE ID_Huespedes = @Id OR Cedula = @Cedula";
@@ -152,8 +150,6 @@ namespace Proyecto_Gregory
         {
             bool tieneReservaActiva = false;
 
-            // Establecer la conexión a la base de datos
-            string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -182,9 +178,62 @@ namespace Proyecto_Gregory
             return tieneReservaActiva;
         }
 
+        void Huesped()
+        {
+            if (EditMode == false)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        string query = "SELECT MAX(Id_Reserva) FROM Reservas WHERE Fecha_salida > GETDATE()";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        Int32 ultimoId = (Int32)command.ExecuteScalar();
+
+                        // Ahora que tienes el último ID de reserva, busca los registros en Detalle_Reservas
+                        string queryDetallesReservas = "SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Detalle_Reservas WHERE Id_Reserva = @UltimoId";
+                        SqlCommand commandDetallesReservas = new SqlCommand(queryDetallesReservas, connection);
+                        commandDetallesReservas.Parameters.AddWithValue("@UltimoId", ultimoId);
+
+                        // Utiliza un SqlDataAdapter para llenar un DataTable con los resultados
+                        SqlDataAdapter adapter = new SqlDataAdapter(commandDetallesReservas);
+                        DataTable detallesReservasTable = new DataTable();
+                        adapter.Fill(detallesReservasTable);
+
+                        // Asigna los datos a celdas específicas del DataGridView
+                        if (detallesReservasTable.Rows.Count > 0)
+                        {
+                            dataGridView1.Rows.Clear();
+
+                            foreach (DataRow row in detallesReservasTable.Rows)
+                            {
+                                object[] rowData = row.ItemArray;
+                                dataGridView1.Rows.Add(rowData[0], rowData[1], rowData[2], rowData[3], rowData[4], rowData[5]);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron detalles de reserva para el ID proporcionado.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al obtener los detalles de reserva: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
         private void HabitacionAsig_Load(object sender, EventArgs e)
         {
             fechasalida_ValueChanged(sender, e);
+            Huesped();            
         }
 
         private void fechasalida_ValueChanged(object sender, EventArgs e)
@@ -276,7 +325,6 @@ namespace Proyecto_Gregory
             if (dataGridView1.Rows.Count > 0)
             {
                 conn.Open();
-                string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog = Hotel; Integrated Security = True";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
