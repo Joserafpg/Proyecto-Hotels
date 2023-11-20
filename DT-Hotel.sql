@@ -99,13 +99,37 @@ SELECT COUNT(*) FROM Detalle_Reservas AS DR
                          INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
                          WHERE DR.Nombre = 'Reynaldo Antonio' AND R.Fecha_salida > GETDATE()
 
+/*procedure habitaciones ocupadas*/
+SELECT COUNT (Id_Reserva) FROM Reservas WHERE Fecha_salida > GETDATE()
 
-SELECT (Id_Reserva) FROM Reservas WHERE Fecha_salida > GETDATE()
+/*procedure huespedes totales*/
+SELECT COUNT (Id_Huesped) FROM Detalle_Reservas WHERE Fecha_salida > GETDATE()
 
 SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Detalle_Reservas
 
 
 SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento
                                                        FROM Detalle_Reservas
-                                                       WHERE Habitacion = 'E1-08' 
+                                                       WHERE Habitacion = 'E1-11' 
                                                        AND Fecha_salida >= GETDATE()
+
+
+
+
+
+
+/*Procedures*/
+
+CREATE PROCEDURE ActualizarEstadoHabitacion
+AS
+BEGIN
+    UPDATE Habitaciones
+    SET Estado = 'Disponible'
+    FROM Habitaciones AS H
+    INNER JOIN Reservas AS R ON H.Numero_habitacion = R.Habitacion
+    WHERE R.Fecha_salida <= GETDATE() AND H.Estado <> 'Disponible';
+END;
+
+exec ActualizarEstadoHabitacion
+
+drop procedure ActualizarEstadoHabitacion
