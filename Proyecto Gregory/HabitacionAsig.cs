@@ -48,14 +48,14 @@ namespace Proyecto_Gregory
             }
         }
 
-        SqlConnection conn = new SqlConnection("Data source = DESKTOP-NDDA7LS; Initial Catalog = Hotel; Integrated Security = True");
+        SqlConnection conn = new SqlConnection("Data source = DESKTOP-7EFN9F7; Initial Catalog = Hotel; Integrated Security = True");
 
         private Huespedes ObtenerHuesped(string identificador)
         {
             Huespedes huesped = null;
 
             // Cadena de conexión a la base de datos
-            string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog=Hotel; Integrated Security=True";
+            string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
 
             // Consulta SQL para obtener el huésped por ID o cédula
             string query = "SELECT ID_Huespedes, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Huespedes WHERE ID_Huespedes = @Id OR Cedula = @Cedula";
@@ -148,6 +148,39 @@ namespace Proyecto_Gregory
             }
         }
 
+        public bool VerificarReservaActiva(string nombreHuesped, DateTime fechaActual)
+        {
+            bool tieneReservaActiva = false;
+
+            // Establecer la conexión a la base de datos
+            string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Consulta SQL para verificar la reserva activa del huésped por su nombre y fecha de salida superior a la fecha actual
+                string query = @"SELECT COUNT(*) FROM Detalle_Reservas AS DR
+                         INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
+                         WHERE DR.Nombre = @Nombre AND R.Fecha_salida > @FechaActual";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Nombre", nombreHuesped);
+                    command.Parameters.AddWithValue("@FechaActual", fechaActual);
+
+                    // Ejecutar la consulta y obtener el recuento de reservas activas
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                    // Si el recuento es mayor que cero, el huésped tiene una reserva activa
+                    if (count > 0)
+                    {
+                        tieneReservaActiva = true;
+                    }
+                }
+            }
+
+            return tieneReservaActiva;
+        }
 
         private void HabitacionAsig_Load(object sender, EventArgs e)
         {
@@ -180,26 +213,30 @@ namespace Proyecto_Gregory
 
         private void bunifuButton21_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtcodigo.Text))
-            {
-                MessageBox.Show("Debe colocar el ID o la cédula del huésped.");
-                return;
-            }
+            DateTime fechaHoy = DateTime.Today;
 
             // Verificar si el texto ingresado es un número (ID) o una cédula
-            if (Int64.TryParse(txtcodigo.Text, out Int64 idhuesped))
+            if (Int64.TryParse(txtcodigo.Text, out Int64 idHuesped))
             {
-                // Llamar a un método para obtener el huésped completo según su ID
-                Huespedes huespedPorId = ObtenerHuesped(idhuesped.ToString());
+                // Obtener el huésped por ID
+                Huespedes huespedPorId = ObtenerHuesped(idHuesped.ToString());
 
                 if (huespedPorId != null)
                 {
+                    // Verificar si el huésped ya tiene una reserva activa
+                    bool tieneReserva = VerificarReservaActiva(huespedPorId.Nombre, fechaHoy);
+
+                    if (tieneReserva)
+                    {
+                        MessageBox.Show("El huésped ya tiene una reserva activa.");
+                        return;
+                    }
+
                     // Verificar si el huésped ya está en el DataGridView y realizar la acción correspondiente
                     VerificarAgregarModificarProducto(huespedPorId);
                 }
                 else
                 {
-                    // No se encontró un huésped con el ID especificado, mostrar un mensaje de error o realizar alguna otra acción apropiada
                     MessageBox.Show("No se encontró ningún huésped con el ID especificado.");
                 }
             }
@@ -208,17 +245,25 @@ namespace Proyecto_Gregory
                 // Intentar buscar por cédula si el texto no es un número (asumiendo que el campo txtcodigo es para cédula)
                 string cedula = txtcodigo.Text;
 
-                // Llamar a un método para obtener el huésped completo según su cédula
+                // Obtener el huésped por cédula
                 Huespedes huespedPorCedula = ObtenerHuesped(cedula);
 
                 if (huespedPorCedula != null)
                 {
+                    // Verificar si el huésped ya tiene una reserva activa
+                    bool tieneReserva = VerificarReservaActiva(huespedPorCedula.Nombre, fechaHoy);
+
+                    if (tieneReserva)
+                    {
+                        MessageBox.Show("El huésped ya tiene una reserva activa.");
+                        return;
+                    }
+
                     // Verificar si el huésped ya está en el DataGridView y realizar la acción correspondiente
                     VerificarAgregarModificarProducto(huespedPorCedula);
                 }
                 else
                 {
-                    // No se encontró un huésped con la cédula especificada, mostrar un mensaje de error o realizar alguna otra acción apropiada
                     MessageBox.Show("No se encontró ningún huésped con la cédula especificada.");
                 }
             }
@@ -231,7 +276,7 @@ namespace Proyecto_Gregory
             if (dataGridView1.Rows.Count > 0)
             {
                 conn.Open();
-                string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog = Hotel; Integrated Security = True";
+                string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog = Hotel; Integrated Security = True";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();

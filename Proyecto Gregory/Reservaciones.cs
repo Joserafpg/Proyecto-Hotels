@@ -20,7 +20,7 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
 
-        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-NDDA7LS; database=Hotel; Integrated Security=True");
+        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-7EFN9F7; database=Hotel; Integrated Security=True");
 
         void CargarComboBox()
         {
