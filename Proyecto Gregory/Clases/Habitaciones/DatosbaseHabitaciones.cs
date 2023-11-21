@@ -17,8 +17,8 @@ namespace Proyecto_Gregory.Clases.Habitaciones
 
             Conexion.opencon();
 
-            SqlCommand Comando = new SqlCommand(string.Format("Insert into Reservas (Habitacion, Fecha_entrada, Fecha_salida, Empleado, Reserva_Precio) values ('{0}','{1}','{2}','{3}','{4}')",
-                    pget.Habitacion, pget.fecha_entrada.ToString("yyyy-MM-dd HH:mm:ss"), pget.fecha_salida.ToString("yyyy-MM-dd HH:mm:ss"),pget.Empleado, pget.Reserva_precio), Conexion.ObtenerConexion());
+            SqlCommand Comando = new SqlCommand(string.Format("Insert into Reservas (Habitacion, Fecha_entrada, Fecha_salida, Empleado, Reserva_Precio, Reserva_cancelada) values ('{0}','{1}','{2}','{3}','{4}','{5}')",
+                    pget.Habitacion, pget.fecha_entrada.ToString("yyyy-MM-dd HH:mm:ss"), pget.fecha_salida.ToString("yyyy-MM-dd HH:mm:ss"),pget.Empleado, pget.Reserva_precio, pget.Reserva_cancelada), Conexion.ObtenerConexion());
 
             retorno = Comando.ExecuteNonQuery();
             Conexion.cerrarcon();
@@ -113,7 +113,5 @@ namespace Proyecto_Gregory.Clases.Habitaciones
             Conexion.cerrarcon();
             return lista;
         }
-
-
     }
 }

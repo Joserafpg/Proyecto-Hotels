@@ -20,10 +20,11 @@ namespace Proyecto_Gregory.Clases.Habitaciones
         public DateTime fecha_salida { get; set; }
         public string Empleado { get; set; }
         public decimal Reserva_precio { get; set; }
+        public bool Reserva_cancelada { get; set; }
 
         public DatosgetReserva() { }
 
-        public DatosgetReserva(Int64 pCodigo, string pHabitacion, Int64 pId_huesped, string pNombre, string pApellido, string pTelefono, DateTime pFecha_nacimiento, DateTime pFecha_entrada, DateTime pFecha_salida, string pEmpleado, decimal pPrecio)
+        public DatosgetReserva(Int64 pCodigo, string pHabitacion, Int64 pId_huesped, string pNombre, string pApellido, string pTelefono, DateTime pFecha_nacimiento, DateTime pFecha_entrada, DateTime pFecha_salida, string pEmpleado, decimal pPrecio, bool reserva_cancelada)
         {
             this.Codigo = pCodigo;
             this.Habitacion = pHabitacion;
@@ -36,6 +37,7 @@ namespace Proyecto_Gregory.Clases.Habitaciones
             this.fecha_salida = pFecha_salida;
             this.Empleado = pEmpleado;
             this.Reserva_precio = pPrecio;
+            this.Reserva_cancelada = reserva_cancelada;
         }
     }
 }

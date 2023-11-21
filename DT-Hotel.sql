@@ -49,6 +49,7 @@ Fecha_entrada datetime,
 Fecha_salida datetime,
 Empleado varchar (50),
 Reserva_Precio decimal (38),
+Reserva_cancelada bit NOT NULL,
 )
 
 create table Detalle_Reservas (

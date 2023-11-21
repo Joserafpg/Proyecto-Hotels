@@ -189,15 +189,21 @@ namespace Proyecto_Gregory
                     try
                     {
                         bunifuButton22.Visible = false;
+                        label9.Visible = false;
+                        txtcodigo.Visible = false;
+                        bunifuButton21.Visible = false;
                         connection.Open();
 
                         string habitacion = lbnumh.Text;
 
                         // Consulta para obtener los detalles de la reserva de la tabla Detalle_Reservas
-                        string queryDetallesReservas = "SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento " +
-                                                       "FROM Detalle_Reservas " +
-                                                       "WHERE Habitacion = @NombreHabitacion " +
-                                                       "AND Fecha_salida >= GETDATE()";
+                        string queryDetallesReservas = "SELECT DR.Id_Huesped, DR.Cedula, DR.Nombre, DR.Apellido, DR.Telefono, DR.Fecha_nacimiento " +
+                                                       "FROM Detalle_Reservas AS DR " +
+                                                       "LEFT JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva " +
+                                                       "WHERE DR.Habitacion = @NombreHabitacion " +
+                                                       "AND DR.Fecha_salida >= GETDATE() " +
+                                                       "AND (R.Reserva_cancelada IS NULL OR R.Reserva_cancelada = 0)";
+
 
                         SqlCommand commandDetallesReservas = new SqlCommand(queryDetallesReservas, connection);
                         commandDetallesReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
@@ -206,7 +212,8 @@ namespace Proyecto_Gregory
                         string queryFechasReservas = "SELECT Fecha_entrada, Fecha_salida " +
                                                      "FROM Reservas " +
                                                      "WHERE Habitacion = @NombreHabitacion " +
-                                                     "AND Fecha_salida >= GETDATE()";
+                                                     "AND Fecha_salida >= GETDATE() " +
+                                                     "AND (Reserva_cancelada IS NULL OR Reserva_cancelada = 0)"; // Considerando que 0 significa no cancelada
 
                         SqlCommand commandFechasReservas = new SqlCommand(queryFechasReservas, connection);
                         commandFechasReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
@@ -408,6 +415,7 @@ namespace Proyecto_Gregory
                 pFactura.fecha_salida = fechasalida.Value;
                 pFactura.Empleado = txtempleado.Text;
                 pFactura.Reserva_precio = Convert.ToDecimal(lbtotal.Text);
+                pFactura.Reserva_cancelada = false;
 
                 DatosbaseHabitaciones.Agregar(pFactura);
 
