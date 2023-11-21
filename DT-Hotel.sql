@@ -114,7 +114,14 @@ SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento
                                                        AND Fecha_salida >= GETDATE()
 
 
+DECLARE @Nombre NVARCHAR(100) = 'E1-02'; -- Reemplaza 'NombreDeLaHabitacion' con el nombre real
+DECLARE @FechaActual DATE = GETDATE(); -- Obtén la fecha actual
 
+SELECT COUNT(*)
+FROM Detalle_Reservas AS DR
+INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
+WHERE DR.Nombre = @Nombre 
+AND R.Fecha_salida >= @FechaActual;
 
 
 

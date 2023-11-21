@@ -193,6 +193,7 @@ namespace Proyecto_Gregory
 
                         string habitacion = lbnumh.Text;
 
+                        // Consulta para obtener los detalles de la reserva de la tabla Detalle_Reservas
                         string queryDetallesReservas = "SELECT Id_Huesped, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento " +
                                                        "FROM Detalle_Reservas " +
                                                        "WHERE Habitacion = @NombreHabitacion " +
@@ -201,9 +202,24 @@ namespace Proyecto_Gregory
                         SqlCommand commandDetallesReservas = new SqlCommand(queryDetallesReservas, connection);
                         commandDetallesReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
 
-                        SqlDataAdapter adapter = new SqlDataAdapter(commandDetallesReservas);
+                        // Consulta para obtener las fechas de entrada y salida de la tabla Reservas
+                        string queryFechasReservas = "SELECT Fecha_entrada, Fecha_salida " +
+                                                     "FROM Reservas " +
+                                                     "WHERE Habitacion = @NombreHabitacion " +
+                                                     "AND Fecha_salida >= GETDATE()";
+
+                        SqlCommand commandFechasReservas = new SqlCommand(queryFechasReservas, connection);
+                        commandFechasReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = commandDetallesReservas;
+
                         DataTable detallesReservasTable = new DataTable();
                         adapter.Fill(detallesReservasTable);
+
+                        DataTable fechasReservasTable = new DataTable();
+                        adapter.SelectCommand = commandFechasReservas;
+                        adapter.Fill(fechasReservasTable);
 
                         if (detallesReservasTable.Rows.Count > 0)
                         {
@@ -218,6 +234,13 @@ namespace Proyecto_Gregory
                         else
                         {
                             MessageBox.Show("No se encontraron detalles de reserva activa para el nombre de habitación proporcionado.");
+                        }
+
+                        if (fechasReservasTable.Rows.Count > 0)
+                        {
+                            // Suponiendo que tienes dos DateTimePicker llamados fechaentrada y fechasalida
+                            fechaentrada.Value = Convert.ToDateTime(fechasReservasTable.Rows[0]["Fecha_entrada"]);
+                            fechasalida.Value = Convert.ToDateTime(fechasReservasTable.Rows[0]["Fecha_salida"]);
                         }
                     }
                     catch (Exception ex)
