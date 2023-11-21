@@ -255,6 +255,62 @@ namespace Proyecto_Gregory
             }
         }
 
+        bool HanPasadoDosHorasDesdeSalida(int idReserva)
+        {
+            DateTime fechaSalidaReserva;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT Fecha_salida FROM Reservas WHERE Id_Reserva = @IdReserva";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdReserva", idReserva);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        fechaSalidaReserva = Convert.ToDateTime(result);
+                        TimeSpan diferencia = DateTime.Now - fechaSalidaReserva;
+
+                        return diferencia.TotalHours >= 2;
+                    }
+                    else
+                    {
+                        // La consulta no devolvió una fecha válida
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                    // Manejo de excepciones
+                    return false;
+                }
+            }
+        }
+
+        int ObtenerIdReservaActiva(string nombreHuesped)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id_Reserva FROM Reservas WHERE Habitacion = @NombreHuesped AND Fecha_salida >= GETDATE()";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NombreHuesped", nombreHuesped);
+
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result);
+                }
+                return -1; // Retorna un valor predeterminado en caso de no encontrar una reserva activa
+            }
+        }
+
         private void HabitacionAsig_Load(object sender, EventArgs e)
         {
             fechasalida_ValueChanged(sender, e);
@@ -287,34 +343,40 @@ namespace Proyecto_Gregory
 
         private void bunifuButton21_Click(object sender, EventArgs e)
         {
-            DateTime fechaHoy = DateTime.Today;
+            DateTime fechaHoraActual = DateTime.Now;
 
-            // Verificar si el texto ingresado es un número (ID) o una cédula
             if (Int64.TryParse(txtcodigo.Text, out Int64 idHuesped))
             {
-                // Obtener el huésped por ID
                 Huespedes huespedPorId = ObtenerHuesped(idHuesped.ToString());
 
                 if (huespedPorId != null)
                 {
-                    // Verificar si el huésped ya tiene una reserva activa
-                    bool tieneReserva = VerificarReservaActiva(huespedPorId.Nombre, fechaHoy);
+                    bool tieneReserva = VerificarReservaActiva(huespedPorId.Nombre, fechaHoraActual);
 
                     if (tieneReserva)
                     {
-                        MessageBox.Show("El huésped ya tiene una reserva activa.");
-                        return;
+                        // Si tiene reserva activa, verificamos si ha pasado más de 2 horas desde la salida
+                        int idReserva = ObtenerIdReservaActiva(huespedPorId.Nombre);
+                        if (idReserva != -1 && HanPasadoDosHorasDesdeSalida(idReserva))
+                        {
+                            VerificarAgregarModificarProducto(huespedPorId);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El huésped ya tiene una reserva activa o su reserva anterior no ha finalizado.");
+                        }
                     }
-
-                    // Verificar si el huésped ya está en el DataGridView y realizar la acción correspondiente
-                    VerificarAgregarModificarProducto(huespedPorId);
+                    else
+                    {
+                        VerificarAgregarModificarProducto(huespedPorId);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("No se encontró ningún huésped con el ID especificado.");
                 }
             }
-         
+
             txtcodigo.Clear();
         }
 
