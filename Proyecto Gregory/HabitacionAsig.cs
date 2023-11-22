@@ -23,7 +23,7 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
         public bool EditMode { get; set; }
-        public string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
+        public string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog=Hotel; Integrated Security=True";
 
         public void InitializeData(Int64 id, string numero_habitacion, string tipo_habitacion, decimal tarifa_noche, Int64 capacidad_maxima, Int64 camas, bool servicio, string estado)
         {
@@ -49,33 +49,22 @@ namespace Proyecto_Gregory
             }
         }
 
-        SqlConnection conn = new SqlConnection("Data source = DESKTOP-7EFN9F7; Initial Catalog = Hotel; Integrated Security = True");
+        SqlConnection conn = new SqlConnection("Data source = DESKTOP-NDDA7LS; Initial Catalog = Hotel; Integrated Security = True");
 
         private Huespedes ObtenerHuesped(string identificador)
         {
             Huespedes huesped = null;
 
-            // Consulta SQL para obtener el huésped por ID o cédula
-            string query = "SELECT ID_Huespedes, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Huespedes WHERE ID_Huespedes = @Id OR Cedula = @Cedula";
+            string queryCedula = "SELECT ID_Huespedes, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Huespedes WHERE Cedula = @Cedula";
+            string queryId = "SELECT ID_Huespedes, Cedula, Nombre, Apellido, Telefono, Fecha_nacimiento FROM Huespedes WHERE ID_Huespedes = @Id";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand(queryCedula, connection))
                 {
-                    if (Int64.TryParse(identificador, out Int64 id))
-                    {
-                        // Es un número (ID)
-                        command.Parameters.AddWithValue("@Id", id);
-                        command.Parameters.AddWithValue("@Cedula", DBNull.Value); // Valor nulo para Cedula
-                    }
-                    else
-                    {
-                        // Es una cédula
-                        command.Parameters.AddWithValue("@Id", DBNull.Value); // Valor nulo para ID
-                        command.Parameters.AddWithValue("@Cedula", identificador);
-                    }
+                    command.Parameters.AddWithValue("@Cedula", identificador);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -85,7 +74,7 @@ namespace Proyecto_Gregory
                             Int32 ids = reader.GetInt32(0);
                             string cedula = reader.GetString(1);
                             string nombre = reader.GetString(2);
-                            string apellio = reader.GetString(3);
+                            string apellido = reader.GetString(3);
                             string telefono = reader.GetString(4);
                             DateTime fecha_nacimiento = reader.GetDateTime(5);
 
@@ -95,17 +84,54 @@ namespace Proyecto_Gregory
                                 Id = ids,
                                 Cedula = cedula,
                                 Nombre = nombre,
-                                Apellido = apellio,
+                                Apellido = apellido,
                                 Telefono = telefono,
                                 Fecha_nacimiento = fecha_nacimiento
                             };
                         }
                     }
                 }
-                connection.Close();
+
+                // Si no se encontró por cédula, intentamos buscar por ID
+                if (huesped == null && Int64.TryParse(identificador, out Int64 id))
+                {
+                    using (SqlCommand command = new SqlCommand(queryId, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Obtener los valores del huésped desde el lector de datos
+                                Int32 ids = reader.GetInt32(0);
+                                string cedula = reader.GetString(1);
+                                string nombre = reader.GetString(2);
+                                string apellido = reader.GetString(3);
+                                string telefono = reader.GetString(4);
+                                DateTime fecha_nacimiento = reader.GetDateTime(5);
+
+                                // Crear un objeto Huespedes con los valores obtenidos
+                                huesped = new Huespedes
+                                {
+                                    Id = ids,
+                                    Cedula = cedula,
+                                    Nombre = nombre,
+                                    Apellido = apellido,
+                                    Telefono = telefono,
+                                    Fecha_nacimiento = fecha_nacimiento
+                                };
+                            }
+                        }
+                    }
+                }
+
+                connection.Close();       
+                
             }
 
             return huesped;
+                       
         }
 
         private void VerificarAgregarModificarProducto(Huespedes huesped)

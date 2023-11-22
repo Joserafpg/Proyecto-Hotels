@@ -137,7 +137,7 @@ namespace Proyecto_Gregory
 
             btninicio.PerformClick();
 
-            string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
+            string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog=Hotel; Integrated Security=True";
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
             {

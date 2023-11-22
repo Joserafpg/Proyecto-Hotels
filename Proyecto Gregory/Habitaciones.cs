@@ -19,8 +19,8 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
 
-        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-7EFN9F7; database=Hotel; Integrated Security=True");
-        public string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
+        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-NDDA7LS; database=Hotel; Integrated Security=True");
+        public string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog=Hotel; Integrated Security=True";
 
         void CargarComboBox()
         {
@@ -68,6 +68,7 @@ namespace Proyecto_Gregory
         void Buscar()
         {
             dataGridView1.DataSource = DatosbaseHabitaciones.BuscarAlumnos(txtBuscar.Text, cClase.Text, cCapacidad.Text, cDisponibilidad.Text);
+            UPDATE();
         }
 
         void UPDATE()
@@ -87,6 +88,50 @@ namespace Proyecto_Gregory
                     Console.WriteLine("Procedimiento ejecutado exitosamente");
                 }
             }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+
+
+            string procedureName2 = "ActualizarEstadoHabitacionPorReservaCancelada";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand(procedureName2, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Procedimiento ejecutado exitosamente2");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+
+            string procedureName3 = "ActualizarEstadoHabitacionPorReservaNoCancelada";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand(procedureName3, connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Procedimiento ejecutado exitosamente3");
+                }
+            }
+
             catch (Exception ex)
             {
                 Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);

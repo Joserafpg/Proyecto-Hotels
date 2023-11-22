@@ -85,6 +85,8 @@ select * from Detalle_Reservas
 DROP TABLE Habitaciones
 DROP TABLE Detalle_Reservas
 DROP TABLE Reservas
+DROP TABLE Huespedes
+
 
 
 DROP DATABASE Hotel
@@ -182,6 +184,31 @@ END;
 EXEC HABITACIONESDISPONIBLES
 
 
+CREATE PROCEDURE ActualizarEstadoHabitacionPorReservaCancelada
+AS
+BEGIN
+    UPDATE Habitaciones
+    SET Estado = 'Disponible'
+    WHERE Numero_habitacion IN (
+        SELECT DISTINCT Habitacion
+        FROM Reservas
+        WHERE Reserva_cancelada = 1
+    );
+END;
 
 
-drop procedure HABITACIONESTOTALES
+CREATE PROCEDURE ActualizarEstadoHabitacionPorReservaNoCancelada
+AS
+BEGIN
+    UPDATE Habitaciones
+    SET Estado = 'Ocupado'
+    WHERE Numero_habitacion IN (
+        SELECT DISTINCT Habitacion
+        FROM Reservas
+        WHERE Reserva_cancelada = 0 -- Reserva no cancelada
+    );
+END;
+
+exec ActualizarEstadoHabitacionPorReservaNoCancelada
+
+drop procedure ActualizarEstadoHabitacionPorReservaCancelada
