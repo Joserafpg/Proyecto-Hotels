@@ -8,7 +8,7 @@ namespace Proyecto_Gregory.Clases.Clientes
 {
     public class Huespedes
     {
-        public Int64 Id { get; set; }
+        public Int32 Id { get; set; }
         public string Cedula { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }

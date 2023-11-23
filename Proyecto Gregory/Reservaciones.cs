@@ -20,7 +20,7 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
 
-        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-NDDA7LS; database=Hotel; Integrated Security=True");
+        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-7EFN9F7; database=Hotel; Integrated Security=True");
 
         void CargarComboBox()
         {
@@ -73,6 +73,43 @@ namespace Proyecto_Gregory
         private void txtbuscar_TextChanged(object sender, EventArgs e)
         {
             Buscar();
+        }
+
+        private void bunifuButton21_Click(object sender, EventArgs e)
+        {
+            ReservaAsig form = new ReservaAsig();
+            form.ShowDialog();
+        }
+
+        private void bunifuButton22_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+                string estado = row.Cells[7].Value.ToString();
+
+
+
+                // Obtén los datos de la fila seleccionada
+                Int64 id = Convert.ToInt64(row.Cells[0].Value);
+                string numero_habitacion = row.Cells[1].Value.ToString();
+                string tipo_habitacion = Convert.ToString(row.Cells[2].Value);
+                decimal tarifa_noche = Convert.ToDecimal(row.Cells[3].Value);
+                Int64 capacidad_maxima = Convert.ToInt64(row.Cells[4].Value);
+                Int64 camas = Convert.ToInt64(row.Cells[5].Value);
+                bool servicio = Convert.ToBoolean(row.Cells[6].Value);
+
+                // Abre el formulario para editar el producto
+                HabitacionAsig formEditar = new HabitacionAsig();
+                formEditar.EditMode = false; // Estás en modo editar
+                formEditar.InitializeData(id, numero_habitacion, tipo_habitacion, tarifa_noche, capacidad_maxima, camas, servicio, estado);
+                if (formEditar.ShowDialog() == DialogResult.OK)
+                {
+                    // Actualiza el DataGridView después de la edición
+                    Buscar();
+                }
+            }
         }
     }
 }

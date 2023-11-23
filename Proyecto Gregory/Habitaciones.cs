@@ -19,8 +19,8 @@ namespace Proyecto_Gregory
             InitializeComponent();
         }
 
-        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-NDDA7LS; database=Hotel; Integrated Security=True");
-        public string connectionString = "Data source = DESKTOP-NDDA7LS; Initial Catalog=Hotel; Integrated Security=True";
+        public static SqlConnection Conn = new SqlConnection("Server = DESKTOP-7EFN9F7; database=Hotel; Integrated Security=True");
+        public string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
 
         void CargarComboBox()
         {
@@ -206,32 +206,23 @@ namespace Proyecto_Gregory
 
                 string estado = row.Cells[7].Value.ToString();
 
-                // Verifica si el estado es igual a 'Reservado', 'Ocupado' o 'Limpieza'
-                if (estado == "Reservado")
-                {
-                    MessageBox.Show("No se puede asignar esta habitación, está en estado Reservado, Ocupado o Limpieza.", "Habitación no disponible", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
+                // Obtén los datos de la fila seleccionada
+                Int64 id = Convert.ToInt64(row.Cells[0].Value);
+                string numero_habitacion = row.Cells[1].Value.ToString();
+                string tipo_habitacion = Convert.ToString(row.Cells[2].Value);
+                decimal tarifa_noche = Convert.ToDecimal(row.Cells[3].Value);
+                Int64 capacidad_maxima = Convert.ToInt64(row.Cells[4].Value);
+                Int64 camas = Convert.ToInt64(row.Cells[5].Value);
+                bool servicio = Convert.ToBoolean(row.Cells[6].Value);
 
-                    // Obtén los datos de la fila seleccionada
-                    Int64 id = Convert.ToInt64(row.Cells[0].Value);
-                    string numero_habitacion = row.Cells[1].Value.ToString();
-                    string tipo_habitacion = Convert.ToString(row.Cells[2].Value);
-                    decimal tarifa_noche = Convert.ToDecimal(row.Cells[3].Value);
-                    Int64 capacidad_maxima = Convert.ToInt64(row.Cells[4].Value);
-                    Int64 camas = Convert.ToInt64(row.Cells[5].Value);
-                    bool servicio = Convert.ToBoolean(row.Cells[6].Value);
-
-                    // Abre el formulario para editar el producto
-                    HabitacionAsig formEditar = new HabitacionAsig();
-                    formEditar.EditMode = false; // Estás en modo editar
-                    formEditar.InitializeData(id, numero_habitacion, tipo_habitacion, tarifa_noche, capacidad_maxima, camas, servicio, estado);
-                    if (formEditar.ShowDialog() == DialogResult.OK)
-                    {
-                        // Actualiza el DataGridView después de la edición
-                        Buscar();
-                    }
+                // Abre el formulario para editar el producto
+                HabitacionAsig formEditar = new HabitacionAsig();
+                formEditar.EditMode = false; // Estás en modo editar
+                formEditar.InitializeData(id, numero_habitacion, tipo_habitacion, tarifa_noche, capacidad_maxima, camas, servicio, estado);
+                if (formEditar.ShowDialog() == DialogResult.OK)
+                {
+                    // Actualiza el DataGridView después de la edición
+                    Buscar();
                 }
             }
         }

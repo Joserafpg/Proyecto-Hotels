@@ -9,20 +9,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Services.Description;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Proyecto_Gregory
 {
-    public partial class HabitacionAsig : Form
+    public partial class ReservaAsig : Form
     {
-        public HabitacionAsig()
+        public ReservaAsig()
         {
             InitializeComponent();
         }
-        public bool EditMode { get; set; }
+
+        SqlConnection conn = new SqlConnection("Data source = DESKTOP-7EFN9F7; Initial Catalog = Hotel; Integrated Security = True");
         public string connectionString = "Data source = DESKTOP-7EFN9F7; Initial Catalog=Hotel; Integrated Security=True";
 
         public void InitializeData(Int64 id, string numero_habitacion, string tipo_habitacion, decimal tarifa_noche, Int64 capacidad_maxima, Int64 camas, bool servicio, string estado)
@@ -33,23 +31,50 @@ namespace Proyecto_Gregory
             lbcapacidad.Text = capacidad_maxima.ToString();
             lbcamas.Text = camas.ToString();
             chservicio.Value = servicio;
-            lbestado.Text = estado;
         }
 
-        private int CalcularDiferenciaEnDias(DateTime fechaInicio, DateTime fechaFin)
+        void CargarComboBox()
         {
-            if (fechaInicio.Date == fechaFin.Date)
-            {
-                return 1;
-            }
-            else
-            {
-                TimeSpan diferencia = fechaFin - fechaInicio;
-                return (int)diferencia.TotalDays;
-            }
-        }
+            conn.Open();
+            string consulta = "SELECT DISTINCT Tipo_habitacion FROM Habitaciones";
+            SqlCommand comando = new SqlCommand(consulta, conn);
+            SqlDataReader lector = comando.ExecuteReader();
 
-        SqlConnection conn = new SqlConnection("Data source = DESKTOP-7EFN9F7; Initial Catalog = Hotel; Integrated Security = True");
+            while (lector.Read())
+            {
+                cClase.Items.Add(lector.GetString(0));
+            }
+
+            conn.Close();
+
+
+
+            conn.Open();
+            string consulta2 = "SELECT DISTINCT Capacida_maxima FROM Habitaciones";
+            SqlCommand comando2 = new SqlCommand(consulta2, conn);
+            SqlDataReader lector2 = comando2.ExecuteReader();
+
+            while (lector2.Read())
+            {
+                cCapacidad.Items.Add(lector2.GetSqlInt32(0));
+            }
+
+            conn.Close();
+
+
+
+            conn.Open();
+            string consulta3 = "SELECT DISTINCT Estado FROM Habitaciones";
+            SqlCommand comando3 = new SqlCommand(consulta3, conn);
+            SqlDataReader lector3 = comando3.ExecuteReader();
+
+            while (lector3.Read())
+            {
+                cDisponibilidad.Items.Add(lector3.GetString(0));
+            }
+
+            conn.Close();
+        }
 
         private Huespedes ObtenerHuesped(string identificador)
         {
@@ -126,12 +151,102 @@ namespace Proyecto_Gregory
                     }
                 }
 
-                connection.Close();       
-                
+                connection.Close();
+
             }
 
             return huesped;
-                       
+
+        }
+
+        public bool VerificarReservaActiva(string nombreHuesped, DateTime fechaActual)
+        {
+            bool tieneReservaActiva = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Consulta SQL para verificar la reserva activa del huésped por su nombre y fecha de salida superior a la fecha actual
+                string query = @"SELECT COUNT(*)
+                                FROM Detalle_Reservas AS DR
+                                INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
+                                WHERE DR.Nombre = @Nombre 
+                                AND R.Fecha_salida >= @FechaActual";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Nombre", nombreHuesped);
+                    command.Parameters.AddWithValue("@FechaActual", fechaActual);
+
+                    // Ejecutar la consulta y obtener el recuento de reservas activas
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                    // Si el recuento es mayor que cero, el huésped tiene una reserva activa
+                    if (count > 0)
+                    {
+                        tieneReservaActiva = true;
+                    }
+                }
+            }
+
+            return tieneReservaActiva;
+        }
+
+        int ObtenerIdReservaActiva(string nombreHuesped)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id_Reserva FROM Reservas WHERE Habitacion = @NombreHuesped AND Fecha_salida >= GETDATE()";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NombreHuesped", nombreHuesped);
+
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result);
+                }
+                return -1; // Retorna un valor predeterminado en caso de no encontrar una reserva activa
+            }
+        }
+
+        bool HanPasadoDosHorasDesdeSalida(int idReserva)
+        {
+            DateTime fechaSalidaReserva;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT Fecha_salida FROM Reservas WHERE Id_Reserva = @IdReserva";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdReserva", idReserva);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        fechaSalidaReserva = Convert.ToDateTime(result);
+                        TimeSpan diferencia = DateTime.Now - fechaSalidaReserva;
+
+                        return diferencia.TotalHours >= 2;
+                    }
+                    else
+                    {
+                        // La consulta no devolvió una fecha válida
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                    // Manejo de excepciones
+                    return false;
+                }
+            }
         }
 
         private void VerificarAgregarModificarProducto(Huespedes huesped)
@@ -172,247 +287,17 @@ namespace Proyecto_Gregory
             }
         }
 
-        public bool VerificarReservaActiva(string nombreHuesped, DateTime fechaActual)
+        private int CalcularDiferenciaEnDias(DateTime fechaInicio, DateTime fechaFin)
         {
-            bool tieneReservaActiva = false;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (fechaInicio.Date == fechaFin.Date)
             {
-                connection.Open();
-
-                // Consulta SQL para verificar la reserva activa del huésped por su nombre y fecha de salida superior a la fecha actual
-                string query = @"SELECT COUNT(*)
-                                FROM Detalle_Reservas AS DR
-                                INNER JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva
-                                WHERE DR.Nombre = @Nombre 
-                                AND R.Fecha_salida >= @FechaActual";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Nombre", nombreHuesped);
-                    command.Parameters.AddWithValue("@FechaActual", fechaActual);
-
-                    // Ejecutar la consulta y obtener el recuento de reservas activas
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-
-                    // Si el recuento es mayor que cero, el huésped tiene una reserva activa
-                    if (count > 0)
-                    {
-                        tieneReservaActiva = true;
-                    }
-                }
-            }
-
-            return tieneReservaActiva;
-        }
-
-        void Huesped()
-        {
-            if (EditMode == false)
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    try
-                    {
-                        bunifuButton22.Visible = false;
-                        label9.Visible = false;
-                        txtcodigo.Visible = false;
-                        bunifuButton21.Visible = false;
-                        fechaentrada.Enabled = false;
-                        fechasalida.Enabled = false;
-                        connection.Open();
-
-                        string habitacion = lbnumh.Text;
-
-                        // Consulta para obtener los detalles de la reserva de la tabla Detalle_Reservas
-                        string queryDetallesReservas = "SELECT DR.Id_Huesped, DR.Cedula, DR.Nombre, DR.Apellido, DR.Telefono, DR.Fecha_nacimiento " +
-                                                       "FROM Detalle_Reservas AS DR " +
-                                                       "LEFT JOIN Reservas AS R ON DR.Id_Reserva = R.Id_Reserva " +
-                                                       "WHERE DR.Habitacion = @NombreHabitacion " +
-                                                       "AND DR.Fecha_salida >= GETDATE() " +
-                                                       "AND (R.Reserva_cancelada IS NULL OR R.Reserva_cancelada = 0)";
-
-
-                        SqlCommand commandDetallesReservas = new SqlCommand(queryDetallesReservas, connection);
-                        commandDetallesReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
-
-                        // Consulta para obtener las fechas de entrada y salida de la tabla Reservas
-                        string queryFechasReservas = "SELECT Fecha_entrada, Fecha_salida " +
-                                                     "FROM Reservas " +
-                                                     "WHERE Habitacion = @NombreHabitacion " +
-                                                     "AND Fecha_salida >= GETDATE() " +
-                                                     "AND (Reserva_cancelada IS NULL OR Reserva_cancelada = 0)"; // Considerando que 0 significa no cancelada
-
-                        SqlCommand commandFechasReservas = new SqlCommand(queryFechasReservas, connection);
-                        commandFechasReservas.Parameters.AddWithValue("@NombreHabitacion", habitacion);
-
-                        SqlDataAdapter adapter = new SqlDataAdapter();
-                        adapter.SelectCommand = commandDetallesReservas;
-
-                        DataTable detallesReservasTable = new DataTable();
-                        adapter.Fill(detallesReservasTable);
-
-                        DataTable fechasReservasTable = new DataTable();
-                        adapter.SelectCommand = commandFechasReservas;
-                        adapter.Fill(fechasReservasTable);
-
-                        if (detallesReservasTable.Rows.Count > 0)
-                        {
-                            dataGridView1.Rows.Clear();
-
-                            foreach (DataRow row in detallesReservasTable.Rows)
-                            {
-                                object[] rowData = row.ItemArray;
-                                dataGridView1.Rows.Add(rowData[0], rowData[1], rowData[2], rowData[3], rowData[4], rowData[5]);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron detalles de reserva activa para el nombre de habitación proporcionado.");
-                        }
-
-                        if (fechasReservasTable.Rows.Count > 0)
-                        {
-                            // Suponiendo que tienes dos DateTimePicker llamados fechaentrada y fechasalida
-                            fechaentrada.Value = Convert.ToDateTime(fechasReservasTable.Rows[0]["Fecha_entrada"]);
-                            fechasalida.Value = Convert.ToDateTime(fechasReservasTable.Rows[0]["Fecha_salida"]);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al obtener los detalles de reserva: " + ex.Message);
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
-        }
-
-        bool HanPasadoDosHorasDesdeSalida(int idReserva)
-        {
-            DateTime fechaSalidaReserva;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT Fecha_salida FROM Reservas WHERE Id_Reserva = @IdReserva";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@IdReserva", idReserva);
-
-                try
-                {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        fechaSalidaReserva = Convert.ToDateTime(result);
-                        TimeSpan diferencia = DateTime.Now - fechaSalidaReserva;
-
-                        return diferencia.TotalHours >= 2;
-                    }
-                    else
-                    {
-                        // La consulta no devolvió una fecha válida
-                        return false;
-                    }
-                }
-                catch (Exception)
-                {
-                    // Manejo de excepciones
-                    return false;
-                }
-            }
-        }
-
-        int ObtenerIdReservaActiva(string nombreHuesped)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT Id_Reserva FROM Reservas WHERE Habitacion = @NombreHuesped AND Fecha_salida >= GETDATE()";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@NombreHuesped", nombreHuesped);
-
-                object result = command.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
-                {
-                    return Convert.ToInt32(result);
-                }
-                return -1; // Retorna un valor predeterminado en caso de no encontrar una reserva activa
-            }
-        }
-
-        private void HabitacionAsig_Load(object sender, EventArgs e)
-        {
-            fechasalida_ValueChanged(sender, e);
-            Huesped();            
-        }
-
-        private void fechasalida_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime fechaInicio = fechaentrada.Value;
-            DateTime fechaFin = fechasalida.Value;
-
-            int diasDeDiferencia = CalcularDiferenciaEnDias(fechaInicio, fechaFin);
-
-            if (diasDeDiferencia <= 0)
-            {
-                int dia1 = 1;
-                lbdias.Text = dia1 + " día";
+                return 1;
             }
             else
             {
-                lbdias.Text = diasDeDiferencia + " días";
+                TimeSpan diferencia = fechaFin - fechaInicio;
+                return (int)diferencia.TotalDays;
             }
-
-            decimal precio = Convert.ToDecimal(lbprecio.Text);
-            decimal resultado = Math.Abs(precio * diasDeDiferencia);
-
-
-            lbtotal.Text = Convert.ToString(resultado);
-        }
-
-        private void bunifuButton21_Click(object sender, EventArgs e)
-        {
-            DateTime fechaHoraActual = DateTime.Now;
-
-            if (Int64.TryParse(txtcodigo.Text, out Int64 idHuesped))
-            {
-                Huespedes huespedPorId = ObtenerHuesped(idHuesped.ToString());
-
-                if (huespedPorId != null)
-                {
-                    bool tieneReserva = VerificarReservaActiva(huespedPorId.Nombre, fechaHoraActual);
-
-                    if (tieneReserva)
-                    {
-                        // Si tiene reserva activa, verificamos si ha pasado más de 2 horas desde la salida
-                        int idReserva = ObtenerIdReservaActiva(huespedPorId.Nombre);
-                        if (idReserva != -1 && HanPasadoDosHorasDesdeSalida(idReserva))
-                        {
-                            VerificarAgregarModificarProducto(huespedPorId);
-                        }
-                        else
-                        {
-                            MessageBox.Show("El huésped ya tiene una reserva activa o su reserva anterior no ha finalizado.");
-                        }
-                    }
-                    else
-                    {
-                        VerificarAgregarModificarProducto(huespedPorId);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No se encontró ningún huésped con el ID especificado.");
-                }
-            }
-
-            txtcodigo.Clear();
         }
 
         private void bunifuButton22_Click(object sender, EventArgs e)
@@ -468,10 +353,10 @@ namespace Proyecto_Gregory
                 }
 
                 conn.Close();
-                
+
                 SqlCommand agregar = new SqlCommand("INSERT INTO Detalle_Reservas VALUES (@Id_Reserva, @Habitaciones, @Id_Huesped, @Cedula, @Nombre, @Apellido, @Telefono, @fecha, @Fecha_nacimiento)", conn);
                 //string verificarQuery = "SELECT Cantidad FROM Productos WHERE Nombre = @Producto";
-                string actualizarQuery = "UPDATE Habitaciones SET Estado = 'Ocupado' WHERE Numero_habitacion = @Habitacion";
+                string actualizarQuery = "UPDATE Habitaciones SET Estado = 'Reservado' WHERE Numero_habitacion = @Habitacion";
 
 
                 conn.Open();
@@ -488,8 +373,8 @@ namespace Proyecto_Gregory
                         string nombre = Convert.ToString(row.Cells["nombre"].Value);
                         string apellido = Convert.ToString(row.Cells["apellido"].Value);
                         string telefono = Convert.ToString(row.Cells["telefono"].Value);
-                        DateTime fecha = Convert.ToDateTime(row.Cells["fecha_nacimiento"].Value); 
-                        DateTime fechasa = fechasalida.Value; 
+                        DateTime fecha = Convert.ToDateTime(row.Cells["fecha_nacimiento"].Value);
+                        DateTime fechasa = fechasalida.Value;
 
                         // Agregar los parámetros al comando
                         agregar.Parameters.Clear();
@@ -499,7 +384,7 @@ namespace Proyecto_Gregory
                         agregar.Parameters.AddWithValue("@Id_Huesped", id_huesped);
                         agregar.Parameters.AddWithValue("@Cedula", cedula);
                         agregar.Parameters.AddWithValue("@Nombre", nombre);
-                        agregar.Parameters.AddWithValue("@Apellido", apellido);;
+                        agregar.Parameters.AddWithValue("@Apellido", apellido); ;
                         agregar.Parameters.AddWithValue("@Telefono", telefono);
                         agregar.Parameters.AddWithValue("@Fecha_nacimiento", fecha);
 
@@ -533,139 +418,121 @@ namespace Proyecto_Gregory
             }
         }
 
-        private void txtempleado_TextChanged(object sender, EventArgs e)
+        void Buscar()
         {
+            dataGridView2.DataSource = DatosbaseHabitaciones.BuscarAlumno3(txtbuscar.Text, cClase.Text, cCapacidad.Text, cDisponibilidad.Text);
+        }
 
+        private void bunifuButton21_Click(object sender, EventArgs e)
+        {
+            DateTime fechaHoraActual = DateTime.Now;
+
+            if (Int64.TryParse(txtcodigo.Text, out Int64 idHuesped))
+            {
+                Huespedes huespedPorId = ObtenerHuesped(idHuesped.ToString());
+
+                if (huespedPorId != null)
+                {
+                    bool tieneReserva = VerificarReservaActiva(huespedPorId.Nombre, fechaHoraActual);
+
+                    if (tieneReserva)
+                    {
+                        // Si tiene reserva activa, verificamos si ha pasado más de 2 horas desde la salida
+                        int idReserva = ObtenerIdReservaActiva(huespedPorId.Nombre);
+                        if (idReserva != -1 && HanPasadoDosHorasDesdeSalida(idReserva))
+                        {
+                            VerificarAgregarModificarProducto(huespedPorId);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El huésped ya tiene una reserva activa o su reserva anterior no ha finalizado.");
+                        }
+                    }
+                    else
+                    {
+                        VerificarAgregarModificarProducto(huespedPorId);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ningún huésped con el ID especificado.");
+                }
+            }
+
+            txtcodigo.Clear();
+        }
+
+        private void fechaentrada_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaInicio = fechaentrada.Value;
+            DateTime fechaFin = fechasalida.Value;
+
+            int diasDeDiferencia = CalcularDiferenciaEnDias(fechaInicio, fechaFin);
+
+            if (diasDeDiferencia <= 0)
+            {
+                int dia1 = 1;
+                lbdias.Text = dia1 + " día";
+            }
+            else
+            {
+                lbdias.Text = diasDeDiferencia + " días";
+            }
+
+            decimal precio = Convert.ToDecimal(lbprecio.Text);
+            decimal resultado = Math.Abs(precio * diasDeDiferencia);
+
+
+            lbtotal.Text = Convert.ToString(resultado);
         }
 
         private void bunifuButton23_Click(object sender, EventArgs e)
         {
-
+            Buscar();
         }
 
-        private void lbestado_Click(object sender, EventArgs e)
+        private void ReservaAsig_Load(object sender, EventArgs e)
         {
-
+            CargarComboBox();
+            Buscar();
         }
 
-        private void label11_Click(object sender, EventArgs e)
+        private void cClase_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Buscar();
         }
 
-        private void chservicio_CheckedChanged(object sender, Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs e)
+        private void txtbuscar_TextChanged(object sender, EventArgs e)
         {
-
+            Buscar();
         }
 
-        private void lbtotal_Click(object sender, EventArgs e)
+        private void bunifuButton24_Click(object sender, EventArgs e)
         {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dataGridView2.SelectedRows[0];
 
-        }
+                string estado = row.Cells[7].Value.ToString();
 
-        private void label22_Click(object sender, EventArgs e)
-        {
+                // Obtén los datos de la fila seleccionada
+                Int64 id = Convert.ToInt64(row.Cells[0].Value);
+                string numero_habitacion = row.Cells[1].Value.ToString();
+                string tipo_habitacion = Convert.ToString(row.Cells[2].Value);
+                decimal tarifa_noche = Convert.ToDecimal(row.Cells[3].Value);
+                Int64 capacidad_maxima = Convert.ToInt64(row.Cells[4].Value);
+                Int64 camas = Convert.ToInt64(row.Cells[5].Value);
+                bool servicio = Convert.ToBoolean(row.Cells[6].Value);
 
-        }
+                lbnumh.Text = numero_habitacion; 
+                lbtipoh.Text = tipo_habitacion; 
+                lbprecio.Text = Convert.ToString(tarifa_noche); 
+                lbcapacidad.Text = Convert.ToString(capacidad_maxima); 
+                lbcamas.Text = Convert.ToString(camas); 
+                chservicio.Checked = servicio;
 
-        private void lbdias_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtcodigo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbcamas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbcapacidad_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbprecio_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbtipoh_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbnumh_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+                panel1.Visible = false;
+            }
         }
     }
 }

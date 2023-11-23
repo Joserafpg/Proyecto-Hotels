@@ -80,7 +80,7 @@ select * from Huespedes
 select * from Habitaciones
 select * from Reservas
 select * from Detalle_Reservas
-
+select * from Huespedes
 
 DROP TABLE Habitaciones
 DROP TABLE Detalle_Reservas
@@ -192,7 +192,7 @@ BEGIN
     WHERE Numero_habitacion IN (
         SELECT DISTINCT Habitacion
         FROM Reservas
-        WHERE Reserva_cancelada = 1
+        WHERE Reserva_cancelada = 1 OR (Reserva_cancelada = 0 AND Estado != 'Reservado')
     );
 END;
 
@@ -206,9 +206,10 @@ BEGIN
         SELECT DISTINCT Habitacion
         FROM Reservas
         WHERE Reserva_cancelada = 0 -- Reserva no cancelada
-    );
+    )
+    AND Estado != 'Reservado'; -- No aplicar a las habitaciones marcadas como 'Reservado'
 END;
 
-exec ActualizarEstadoHabitacionPorReservaNoCancelada
+exec ActualizarEstadoHabitacionPorReservaCancelada
 
 drop procedure ActualizarEstadoHabitacionPorReservaCancelada

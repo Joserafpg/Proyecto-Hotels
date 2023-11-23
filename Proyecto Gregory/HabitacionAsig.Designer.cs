@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HabitacionAsig));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState1 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState2 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState7 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState8 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState9 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -84,6 +84,7 @@
             this.label1.Size = new System.Drawing.Size(203, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Detalles de la Habitacion";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -94,6 +95,7 @@
             this.label2.Size = new System.Drawing.Size(115, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Numero Habitacion:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -104,6 +106,7 @@
             this.label3.Size = new System.Drawing.Size(110, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Tipo de habitacion:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -114,6 +117,7 @@
             this.label4.Size = new System.Drawing.Size(98, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Tarifa por noche:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -124,6 +128,7 @@
             this.label5.Size = new System.Drawing.Size(154, 15);
             this.label5.TabIndex = 4;
             this.label5.Text = "Capacidad de Alojamiento:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -134,6 +139,7 @@
             this.label6.Size = new System.Drawing.Size(46, 15);
             this.label6.TabIndex = 5;
             this.label6.Text = "Camas:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -144,6 +150,7 @@
             this.label7.Size = new System.Drawing.Size(137, 15);
             this.label7.TabIndex = 6;
             this.label7.Text = "Servicio a la habitacion:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
@@ -154,6 +161,7 @@
             this.label8.Size = new System.Drawing.Size(154, 19);
             this.label8.TabIndex = 7;
             this.label8.Text = "Detalles del cliente";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // dataGridView1
             // 
@@ -174,6 +182,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(487, 150);
             this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // idhuesped
             // 
@@ -223,6 +232,7 @@
             this.label9.Size = new System.Drawing.Size(90, 15);
             this.label9.TabIndex = 9;
             this.label9.Text = "Codigo Cliente:";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // lbnumh
             // 
@@ -233,6 +243,7 @@
             this.lbnumh.Size = new System.Drawing.Size(25, 15);
             this.lbnumh.TabIndex = 10;
             this.lbnumh.Text = "000";
+            this.lbnumh.Click += new System.EventHandler(this.lbnumh_Click);
             // 
             // lbtipoh
             // 
@@ -243,6 +254,7 @@
             this.lbtipoh.Size = new System.Drawing.Size(25, 15);
             this.lbtipoh.TabIndex = 11;
             this.lbtipoh.Text = "000";
+            this.lbtipoh.Click += new System.EventHandler(this.lbtipoh_Click);
             // 
             // lbprecio
             // 
@@ -253,6 +265,7 @@
             this.lbprecio.Size = new System.Drawing.Size(25, 15);
             this.lbprecio.TabIndex = 12;
             this.lbprecio.Text = "000";
+            this.lbprecio.Click += new System.EventHandler(this.lbprecio_Click);
             // 
             // lbcapacidad
             // 
@@ -263,6 +276,7 @@
             this.lbcapacidad.Size = new System.Drawing.Size(25, 15);
             this.lbcapacidad.TabIndex = 13;
             this.lbcapacidad.Text = "000";
+            this.lbcapacidad.Click += new System.EventHandler(this.lbcapacidad_Click);
             // 
             // lbcamas
             // 
@@ -273,6 +287,7 @@
             this.lbcamas.Size = new System.Drawing.Size(25, 15);
             this.lbcamas.TabIndex = 14;
             this.lbcamas.Text = "000";
+            this.lbcamas.Click += new System.EventHandler(this.lbcamas_Click);
             // 
             // txtcodigo
             // 
@@ -281,6 +296,7 @@
             this.txtcodigo.Name = "txtcodigo";
             this.txtcodigo.Size = new System.Drawing.Size(107, 18);
             this.txtcodigo.TabIndex = 17;
+            this.txtcodigo.TextChanged += new System.EventHandler(this.txtcodigo_TextChanged);
             // 
             // bunifuButton21
             // 
@@ -301,11 +317,11 @@
             this.bunifuButton21.ColorContrastOnClick = 45;
             this.bunifuButton21.ColorContrastOnHover = 45;
             this.bunifuButton21.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.bunifuButton21.CustomizableEdges = borderEdges1;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.bunifuButton21.CustomizableEdges = borderEdges5;
             this.bunifuButton21.DialogResult = System.Windows.Forms.DialogResult.None;
             this.bunifuButton21.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton21.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -381,6 +397,7 @@
             this.label16.Size = new System.Drawing.Size(185, 19);
             this.label16.TabIndex = 19;
             this.label16.Text = "Detalles del hospedaje";
+            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // label17
             // 
@@ -391,6 +408,7 @@
             this.label17.Size = new System.Drawing.Size(106, 15);
             this.label17.TabIndex = 20;
             this.label17.Text = "Fecha de entrada:";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // label18
             // 
@@ -424,7 +442,7 @@
             this.fechaentrada.Location = new System.Drawing.Point(160, 306);
             this.fechaentrada.MinimumSize = new System.Drawing.Size(4, 32);
             this.fechaentrada.Name = "fechaentrada";
-            this.fechaentrada.Size = new System.Drawing.Size(220, 32);
+            this.fechaentrada.Size = new System.Drawing.Size(238, 32);
             this.fechaentrada.TabIndex = 22;
             this.fechaentrada.ValueChanged += new System.EventHandler(this.fechasalida_ValueChanged);
             // 
@@ -450,7 +468,7 @@
             this.fechasalida.Location = new System.Drawing.Point(160, 354);
             this.fechasalida.MinimumSize = new System.Drawing.Size(4, 32);
             this.fechasalida.Name = "fechasalida";
-            this.fechasalida.Size = new System.Drawing.Size(220, 32);
+            this.fechasalida.Size = new System.Drawing.Size(238, 32);
             this.fechasalida.TabIndex = 23;
             this.fechasalida.ValueChanged += new System.EventHandler(this.fechasalida_ValueChanged);
             // 
@@ -463,6 +481,7 @@
             this.label19.Size = new System.Drawing.Size(110, 15);
             this.label19.TabIndex = 24;
             this.label19.Text = "Dias de hospedaje:";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // lbdias
             // 
@@ -473,6 +492,7 @@
             this.lbdias.Size = new System.Drawing.Size(25, 15);
             this.lbdias.TabIndex = 25;
             this.lbdias.Text = "000";
+            this.lbdias.Click += new System.EventHandler(this.lbdias_Click);
             // 
             // lbtotal
             // 
@@ -483,6 +503,7 @@
             this.lbtotal.Size = new System.Drawing.Size(25, 15);
             this.lbtotal.TabIndex = 27;
             this.lbtotal.Text = "000";
+            this.lbtotal.Click += new System.EventHandler(this.lbtotal_Click);
             // 
             // label22
             // 
@@ -493,6 +514,7 @@
             this.label22.Size = new System.Drawing.Size(80, 15);
             this.label22.TabIndex = 26;
             this.label22.Text = "Total a pagar:";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // chservicio
             // 
@@ -508,34 +530,35 @@
             this.chservicio.Size = new System.Drawing.Size(30, 16);
             this.chservicio.TabIndex = 15;
             this.chservicio.ThumbMargin = 3;
-            toggleState1.BackColor = System.Drawing.Color.DarkGray;
-            toggleState1.BackColorInner = System.Drawing.Color.White;
-            toggleState1.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState1.BorderColorInner = System.Drawing.Color.White;
-            toggleState1.BorderRadius = 17;
-            toggleState1.BorderRadiusInner = 11;
-            toggleState1.BorderThickness = 1;
-            toggleState1.BorderThicknessInner = 1;
-            this.chservicio.ToggleStateDisabled = toggleState1;
-            toggleState2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState2.BackColorInner = System.Drawing.Color.White;
-            toggleState2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState2.BorderColorInner = System.Drawing.Color.White;
-            toggleState2.BorderRadius = 15;
-            toggleState2.BorderRadiusInner = 9;
-            toggleState2.BorderThickness = 1;
-            toggleState2.BorderThicknessInner = 1;
-            this.chservicio.ToggleStateOff = toggleState2;
-            toggleState3.BackColor = System.Drawing.Color.DodgerBlue;
-            toggleState3.BackColorInner = System.Drawing.Color.White;
-            toggleState3.BorderColor = System.Drawing.Color.DodgerBlue;
-            toggleState3.BorderColorInner = System.Drawing.Color.White;
-            toggleState3.BorderRadius = 15;
-            toggleState3.BorderRadiusInner = 9;
-            toggleState3.BorderThickness = 1;
-            toggleState3.BorderThicknessInner = 1;
-            this.chservicio.ToggleStateOn = toggleState3;
+            toggleState7.BackColor = System.Drawing.Color.DarkGray;
+            toggleState7.BackColorInner = System.Drawing.Color.White;
+            toggleState7.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState7.BorderColorInner = System.Drawing.Color.White;
+            toggleState7.BorderRadius = 17;
+            toggleState7.BorderRadiusInner = 11;
+            toggleState7.BorderThickness = 1;
+            toggleState7.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateDisabled = toggleState7;
+            toggleState8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState8.BackColorInner = System.Drawing.Color.White;
+            toggleState8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState8.BorderColorInner = System.Drawing.Color.White;
+            toggleState8.BorderRadius = 15;
+            toggleState8.BorderRadiusInner = 9;
+            toggleState8.BorderThickness = 1;
+            toggleState8.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateOff = toggleState8;
+            toggleState9.BackColor = System.Drawing.Color.DodgerBlue;
+            toggleState9.BackColorInner = System.Drawing.Color.White;
+            toggleState9.BorderColor = System.Drawing.Color.DodgerBlue;
+            toggleState9.BorderColorInner = System.Drawing.Color.White;
+            toggleState9.BorderRadius = 15;
+            toggleState9.BorderRadiusInner = 9;
+            toggleState9.BorderThickness = 1;
+            toggleState9.BorderThicknessInner = 1;
+            this.chservicio.ToggleStateOn = toggleState9;
             this.chservicio.Value = true;
+            this.chservicio.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.chservicio_CheckedChanged);
             // 
             // lbestado
             // 
@@ -546,6 +569,7 @@
             this.lbestado.Size = new System.Drawing.Size(25, 15);
             this.lbestado.TabIndex = 30;
             this.lbestado.Text = "000";
+            this.lbestado.Click += new System.EventHandler(this.lbestado_Click);
             // 
             // label11
             // 
@@ -556,6 +580,7 @@
             this.label11.Size = new System.Drawing.Size(45, 15);
             this.label11.TabIndex = 29;
             this.label11.Text = "Estado:";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // bunifuButton22
             // 
@@ -571,16 +596,16 @@
             this.bunifuButton22.BackColor1 = System.Drawing.Color.DodgerBlue;
             this.bunifuButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton22.BackgroundImage")));
             this.bunifuButton22.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton22.ButtonText = "bunifuButton22";
+            this.bunifuButton22.ButtonText = "Facturar";
             this.bunifuButton22.ButtonTextMarginLeft = 0;
             this.bunifuButton22.ColorContrastOnClick = 45;
             this.bunifuButton22.ColorContrastOnHover = 45;
             this.bunifuButton22.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.bunifuButton22.CustomizableEdges = borderEdges2;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.bunifuButton22.CustomizableEdges = borderEdges6;
             this.bunifuButton22.DialogResult = System.Windows.Forms.DialogResult.None;
             this.bunifuButton22.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton22.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -649,7 +674,7 @@
             // 
             // txtempleado
             // 
-            this.txtempleado.Location = new System.Drawing.Point(983, 12);
+            this.txtempleado.Location = new System.Drawing.Point(982, 13);
             this.txtempleado.Name = "txtempleado";
             this.txtempleado.Size = new System.Drawing.Size(100, 20);
             this.txtempleado.TabIndex = 32;
