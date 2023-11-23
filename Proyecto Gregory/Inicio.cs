@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Gregory.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,11 +40,30 @@ namespace Proyecto_Gregory
             }
         }
 
+        void Buscar()
+        {
+            String query = "SELECT habitacion, Fecha_entrada, Fecha_salida FROM Reservas ORDER BY ABS(DATEDIFF(day, GETDATE(), Fecha_salida)) ";
+            
+            Conexion.opencon();
+            SqlCommand cmd = new SqlCommand(query, Conexion.ObtenerConexion());
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            Conexion.cerrarcon();
+        }
+
         private void Inicio_Load(object sender, EventArgs e)
         {
             ExecuteProcedureAndDisplayResult("HUESPEDESTOTALES", huespedestotales);
             ExecuteProcedureAndDisplayResult("HabitacionesEnUso", habitacionesenuso);
             ExecuteProcedureAndDisplayResult("HABITACIONESDISPONIBLES", habitacionesdisponibles);
+            Buscar();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
